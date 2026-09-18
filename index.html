@@ -3,550 +3,942 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#fff7ed">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="light-content">
+<meta name="apple-mobile-web-app-title" content="SPM Quest">
 <title>SPM Study Quest</title>
-
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#fff7ed;
   color:#292524;
+  min-height:100vh;
 }
 button,input,select{font:inherit}
 button{cursor:pointer;border:0}
 .app{
-  max-width:700px;
+  max-width:760px;
   margin:auto;
-  min-height:100vh;
   padding-bottom:90px;
 }
 header{
-  padding:24px 20px 12px;
+  padding:18px 18px 12px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 .logo{
-  font-size:24px;
+  font-size:20px;
   font-weight:800;
-}
-.subtitle{
-  color:#78716c;
-  font-size:13px;
-  margin-top:3px;
 }
 .stats{
   display:flex;
-  gap:7px;
+  gap:8px;
 }
 .stat{
   background:white;
-  border-radius:16px;
-  padding:8px 10px;
-  box-shadow:0 4px 14px rgba(0,0,0,.05);
+  padding:7px 10px;
+  border-radius:14px;
+  box-shadow:0 3px 12px #0000000d;
   font-size:13px;
   font-weight:700;
 }
 .hero{
-  margin:12px 20px;
+  margin:8px 16px;
   padding:22px;
-  border-radius:28px;
-  background:linear-gradient(135deg,#fed7aa,#fde68a);
-  box-shadow:0 8px 25px rgba(0,0,0,.07);
+  border-radius:25px;
+  background:linear-gradient(135deg,#fde68a,#fed7aa);
 }
 .hero h1{
-  margin:0 0 5px;
-  font-size:26px;
+  margin:0 0 6px;
+  font-size:27px;
 }
 .hero p{
   margin:0;
-  color:#57534e;
-}
-.countdown{
-  margin-top:15px;
-  background:rgba(255,255,255,.7);
-  border-radius:18px;
-  padding:13px;
-  text-align:center;
-}
-.countdown strong{
-  display:block;
-  font-size:28px;
-}
-.section{
-  padding:8px 20px;
-}
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:12px 0;
-}
-.section-title h2{
-  font-size:19px;
-  margin:0;
+  opacity:.75;
 }
 .card{
   background:white;
-  border-radius:22px;
-  padding:17px;
-  margin-bottom:12px;
-  box-shadow:0 5px 18px rgba(0,0,0,.05);
+  margin:14px 16px;
+  padding:18px;
+  border-radius:23px;
+  box-shadow:0 5px 18px #0000000b;
 }
-.task{
+.section-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:13px;
+}
+.countdown{
+  text-align:center;
+}
+.big-count{
+  font-size:42px;
+  font-weight:900;
+  margin:5px 0;
+}
+.count-label{
+  color:#78716c;
+  font-size:13px;
+}
+.warning{
+  margin-top:12px;
+  padding:10px;
+  border-radius:13px;
+  background:#fef2f2;
+  color:#b91c1c;
+  font-weight:800;
+}
+.quest-input{
   display:flex;
-  align-items:center;
-  gap:12px;
+  gap:7px;
+  margin-bottom:12px;
 }
-.checkbox{
-  width:25px;
-  height:25px;
-  border-radius:9px;
-  border:2px solid #d6d3d1;
-  background:white;
-  flex-shrink:0;
-}
-.checkbox.done{
-  background:#22c55e;
-  border-color:#22c55e;
-  color:white;
-}
-.task-info{
+.quest-input input{
   flex:1;
-}
-.task-name{
-  font-weight:700;
-}
-.task-meta{
-  color:#a8a29e;
-  font-size:12px;
-  margin-top:3px;
-}
-.subject{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:8px;
-  background:#f5f5f4;
-  font-size:11px;
-  margin-left:5px;
-}
-.delete{
-  background:#f5f5f4;
-  border-radius:10px;
-  padding:7px;
-}
-.add-box{
-  display:grid;
-  gap:8px;
-}
-input,select{
-  width:100%;
-  border:1px solid #e7e5e4;
-  background:#fafaf9;
-  border-radius:14px;
+  min-width:0;
   padding:12px;
-  outline:none;
+  border:1px solid #e7e5e4;
+  border-radius:13px;
+}
+.quest-input select{
+  padding:10px;
+  border:1px solid #e7e5e4;
+  border-radius:13px;
+  background:white;
 }
 .primary{
   background:#292524;
   color:white;
-  padding:13px;
+  padding:11px 15px;
+  border-radius:13px;
+  font-weight:800;
+}
+.task{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  margin:8px 0;
+  background:#fafaf9;
   border-radius:15px;
-  font-weight:700;
+}
+.task input{width:20px;height:20px}
+.task-info{flex:1}
+.task-name{font-weight:700}
+.subject{
+  display:inline-block;
+  margin-top:3px;
+  font-size:11px;
+  color:#78716c;
+}
+.done .task-name{
+  text-decoration:line-through;
+  opacity:.45;
 }
 .timer{
   text-align:center;
 }
 .timer-display{
   font-size:58px;
-  font-weight:800;
-  letter-spacing:-2px;
-  margin:10px 0;
+  font-weight:900;
+  letter-spacing:2px;
 }
-.timer-options{
+.timer-buttons{
   display:flex;
   gap:7px;
-  overflow:auto;
-  padding-bottom:5px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
-.timer-options button{
-  background:#f5f5f4;
+.timer-buttons button{
   padding:9px 13px;
   border-radius:12px;
-  white-space:nowrap;
+  background:#f5f5f4;
+  font-weight:700;
 }
-.timer-options button.active{
+.timer-buttons .active{
   background:#292524;
   color:white;
 }
-.timer-controls{
+.timer-main{
+  margin-top:13px;
   display:flex;
+  gap:8px;
   justify-content:center;
-  gap:10px;
 }
-.timer-controls button{
-  padding:12px 20px;
-  border-radius:15px;
-  background:#fed7aa;
-  font-weight:700;
+.timer-main button{
+  padding:12px 22px;
+  border-radius:14px;
+  background:#f97316;
+  color:white;
+  font-weight:900;
 }
+/* PET */
 .pet-card{
-  display:flex;
-  gap:18px;
-  align-items:center;
+  overflow:hidden;
 }
-.pet{
-  width:120px;
-  height:120px;
-  border-radius:35px;
-  background:#fff1f2;
+.pet-stage{
+  position:relative;
+  height:250px;
+  border-radius:20px;
+  background:linear-gradient(#e0f2fe,#fef3c7);
+  overflow:hidden;
   display:flex;
+  align-items:center;
   justify-content:center;
-  align-items:center;
-  font-size:68px;
-  box-shadow:inset 0 -8px 0 rgba(0,0,0,.03);
 }
+.sun{
+  position:absolute;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#fde68a;
+  top:20px;
+  right:25px;
+}
+.cloud{
+  position:absolute;
+  width:75px;
+  height:25px;
+  border-radius:30px;
+  background:white;
+  opacity:.8;
+}
+.cloud:before,.cloud:after{
+  content:"";
+  position:absolute;
+  background:white;
+  border-radius:50%;
+}
+.cloud:before{
+  width:32px;height:32px;
+  left:12px;top:-14px;
+}
+.cloud:after{
+  width:40px;height:40px;
+  right:10px;top:-20px;
+}
+.cloud1{left:20px;top:45px}
+.cloud2{left:125px;top:85px;transform:scale(.7)}
+.ground{
+  position:absolute;
+  bottom:-35px;
+  width:120%;
+  height:85px;
+  border-radius:50% 50% 0 0;
+  background:#bbf7d0;
+}
+/* SVG PET */
+.pet{
+  position:relative;
+  width:170px;
+  height:180px;
+  z-index:3;
+  animation:breathe 2.8s ease-in-out infinite;
+  transform-origin:center bottom;
+}
+.pet.sleeping{
+  animation:sleep 2s ease-in-out infinite;
+}
+.pet.playing{
+  animation:jump .55s ease-in-out infinite alternate;
+}
+.pet.feeding{
+  animation:eat .35s ease-in-out infinite alternate;
+}
+.pet svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+.tail{
+  transform-origin:145px 120px;
+  animation:tail 1.5s ease-in-out infinite;
+}
+.eye{
+  transform-origin:center;
+  animation:blink 4s infinite;
+}
+.cheek{
+  opacity:.45;
+}
+.mouth-happy{display:block}
+.mouth-sleep{display:none}
+.sleep .mouth-happy{display:none}
+.sleep .mouth-sleep{display:block}
+.zzz{
+  display:none;
+  position:absolute;
+  right:12px;
+  top:20px;
+  font-size:23px;
+  font-weight:900;
+  animation:zzz 1.5s infinite;
+}
+.sleeping .zzz{display:block}
 .pet-info{
-  flex:1;
+  margin-top:14px;
 }
 .pet-name{
-  font-size:20px;
-  font-weight:800;
+  font-size:21px;
+  font-weight:900;
+}
+.level{
+  color:#78716c;
+  font-size:13px;
+}
+.bars{
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+.bar-row{
+  display:grid;
+  grid-template-columns:82px 1fr 38px;
+  gap:7px;
+  align-items:center;
+  font-size:12px;
+  font-weight:700;
 }
 .bar{
   height:10px;
-  background:#f5f5f4;
-  border-radius:10px;
+  border-radius:20px;
+  background:#e7e5e4;
   overflow:hidden;
-  margin:8px 0 13px;
 }
-.bar span{
-  display:block;
+.bar-fill{
   height:100%;
-  background:#f59e0b;
   width:50%;
-  border-radius:10px;
+  border-radius:20px;
+  transition:width .4s ease;
 }
-.pet-buttons{
-  display:flex;
+.feed{background:#fb7185}
+.energy{background:#60a5fa}
+.happy{background:#fbbf24}
+.exp{background:#a78bfa}
+.pet-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:7px;
+  margin-top:13px;
 }
-.pet-buttons button{
-  flex:1;
-  padding:9px 5px;
-  border-radius:12px;
-  background:#fef3c7;
+.pet-actions button{
+  padding:11px 5px;
+  border-radius:13px;
+  background:#f5f5f4;
+  font-weight:800;
 }
-.progress-row{
-  margin-bottom:14px;
+.pet-actions button:active{
+  transform:scale(.96);
 }
-.progress-label{
+/* PROGRESS */
+.progress-item{
+  margin:12px 0;
+}
+.progress-head{
   display:flex;
   justify-content:space-between;
   font-size:13px;
-  font-weight:700;
+  font-weight:800;
+  margin-bottom:5px;
 }
-.subject-bar{
-  height:9px;
-  background:#f5f5f4;
-  border-radius:10px;
-  margin-top:6px;
+.progress-bg{
+  height:10px;
+  background:#e7e5e4;
+  border-radius:20px;
   overflow:hidden;
 }
-.subject-bar span{
-  display:block;
+.progress-fill{
   height:100%;
-  background:#fb923c;
-  border-radius:10px;
+  background:#f97316;
+  border-radius:20px;
+  transition:width .4s;
 }
-.reward{
+/* SHOP */
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+}
+.shop-item{
+  padding:15px;
+  background:#fafaf9;
+  border-radius:16px;
   text-align:center;
 }
-.reward button{
-  background:#fef3c7;
-  padding:14px 18px;
-  border-radius:16px;
-  font-weight:800;
-  margin:5px;
+.shop-icon{
+  font-size:32px;
 }
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translateX(-50%) translateY(100px);
+.shop-item button{
+  margin-top:7px;
+  padding:8px 12px;
+  border-radius:11px;
   background:#292524;
   color:white;
-  padding:13px 18px;
-  border-radius:15px;
-  transition:.3s;
-  z-index:20;
-  font-size:14px;
+  font-weight:800;
+  font-size:12px;
 }
-.toast.show{
-  transform:translateX(-50%) translateY(0);
+/* TIMELINE */
+.timeline-hero{
+  text-align:center;
+  background:linear-gradient(135deg,#fee2e2,#ffedd5);
 }
-nav{
+.exam-date{
+  color:#dc2626;
+  font-weight:900;
+  font-size:19px;
+}
+.days-left{
+  font-size:54px;
+  font-weight:1000;
+  color:#dc2626;
+  line-height:1;
+  margin:10px 0 4px;
+}
+.days-text{
+  font-weight:800;
+  color:#7f1d1d;
+}
+.month{
+  margin-top:20px;
+}
+.month-title{
+  font-size:19px;
+  font-weight:900;
+  margin-bottom:9px;
+}
+.weekdays,.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+}
+.weekdays div{
+  text-align:center;
+  font-size:10px;
+  color:#a8a29e;
+  font-weight:800;
+}
+.day{
+  min-height:44px;
+  border-radius:10px;
+  background:#fafaf9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  font-size:12px;
+  font-weight:700;
+}
+.day.today{
+  outline:3px solid #f59e0b;
+  background:#fffbeb;
+}
+.day.exam{
+  background:#fee2e2;
+  color:#b91c1c;
+  font-weight:900;
+}
+.day.first-exam{
+  background:#dc2626;
+  color:white;
+  transform:scale(1.03);
+}
+.day .dot{
+  position:absolute;
+  bottom:4px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#ef4444;
+}
+.exam-list{
+  margin-top:14px;
+  display:grid;
+  gap:8px;
+}
+.exam-row{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 12px;
+  border-radius:13px;
+  background:#fafaf9;
+  font-size:13px;
+}
+.exam-row strong{color:#dc2626}
+.bottom-nav{
   position:fixed;
   bottom:0;
   left:0;
   right:0;
-  background:rgba(255,255,255,.94);
+  height:72px;
+  background:#ffffffef;
   backdrop-filter:blur(15px);
-  border-top:1px solid #eee;
+  border-top:1px solid #e7e5e4;
   display:flex;
   justify-content:center;
-  gap:5px;
-  padding:10px max(10px,calc((100% - 700px)/2));
-  z-index:10;
+  z-index:20;
 }
-nav button{
-  flex:1;
-  max-width:130px;
+.nav-inner{
+  width:min(760px,100%);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.nav-btn{
   background:transparent;
-  padding:8px;
-  border-radius:13px;
-  font-size:11px;
   color:#78716c;
-}
-nav button.active{
-  background:#fff7ed;
-  color:#292524;
+  font-size:11px;
   font-weight:800;
 }
-.hidden{display:none}
-.empty{
-  text-align:center;
-  color:#a8a29e;
-  padding:20px 5px;
+.nav-btn span{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
 }
-@media(max-width:480px){
-  header{padding-top:18px}
-  .logo{font-size:21px}
-  .stats .stat{font-size:11px;padding:7px}
-  .hero h1{font-size:23px}
-  .pet{width:95px;height:95px;font-size:55px}
-  .timer-display{font-size:50px}
+.nav-btn.active{color:#f97316}
+.page{display:none}
+.page.active{display:block}
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:88px;
+  transform:translateX(-50%) translateY(15px);
+  background:#292524;
+  color:white;
+  padding:11px 16px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:50;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+/* LOCK */
+#lockScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#fff7ed,#fed7aa);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+.lock-box{
+  width:min(400px,100%);
+  background:white;
+  padding:30px 23px;
+  border-radius:28px;
+  box-shadow:0 15px 50px #00000018;
+  text-align:center;
+}
+.lock-icon{
+  font-size:55px;
+}
+.lock-box h1{
+  margin:10px 0 5px;
+}
+.lock-box p{
+  color:#78716c;
+  font-size:14px;
+}
+.lock-box input{
+  width:100%;
+  padding:14px;
+  border:2px solid #e7e5e4;
+  border-radius:14px;
+  margin:13px 0 8px;
+  text-align:center;
+  outline:none;
+}
+.lock-box input:focus{
+  border-color:#f97316;
+}
+.lock-box button{
+  width:100%;
+  padding:14px;
+  background:#292524;
+  color:white;
+  border-radius:14px;
+  font-weight:900;
+}
+.lock-error{
+  color:#dc2626;
+  font-size:12px;
+  min-height:18px;
+}
+.shake{
+  animation:shake .3s;
+}
+@keyframes breathe{
+  0%,100%{transform:scaleY(1) translateY(0)}
+  50%{transform:scaleY(1.025) translateY(-2px)}
+}
+@keyframes sleep{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(4px) rotate(1deg)}
+}
+@keyframes jump{
+  from{transform:translateY(0) rotate(-2deg)}
+  to{transform:translateY(-20px) rotate(2deg)}
+}
+@keyframes eat{
+  from{transform:translateY(0) scaleY(1)}
+  to{transform:translateY(4px) scaleY(.97)}
+}
+@keyframes tail{
+  0%,100%{transform:rotate(0)}
+  50%{transform:rotate(10deg)}
+}
+@keyframes blink{
+  0%,43%,46%,100%{transform:scaleY(1)}
+  44%,45%{transform:scaleY(.1)}
+}
+@keyframes zzz{
+  0%{opacity:0;transform:translateY(8px)}
+  50%{opacity:1}
+  100%{opacity:0;transform:translateY(-12px)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-7px)}
+  75%{transform:translateX(7px)}
 }
 </style>
 </head>
-
 <body>
-
-<div class="app">
-
-<header>
-  <div>
-    <div class="logo">📚 SPM Study Quest</div>
-    <div class="subtitle">Turn studying into a game.</div>
+<!-- PASSWORD LOCK -->
+<div id="lockScreen">
+  <div class="lock-box" id="lockBox">
+    <div class="lock-icon">🔐</div>
+    <h1>SPM Study Quest</h1>
+    <p>Your study world is locked.<br>Enter your password to continue.</p>
+    <input id="passwordInput" type="password" placeholder="Enter password">
+    <div class="lock-error" id="lockError"></div>
+    <button onclick="unlock()">Unlock Quest</button>
   </div>
+</div>
+<div class="app" id="app">
+<header>
+  <div class="logo">📚 SPM Study Quest</div>
   <div class="stats">
     <div class="stat">⭐ <span id="xp">0</span></div>
     <div class="stat">🪙 <span id="coins">0</span></div>
   </div>
 </header>
-
-<main id="home">
-
-<section class="hero">
+<!-- HOME -->
+<section id="home" class="page active">
+<div class="hero">
   <h1>Keep going, future lawyer. ⚖️</h1>
-  <p>One small quest at a time.</p>
-  <div class="countdown">
-    <span>SPM countdown</span>
-    <strong id="countdown">Loading...</strong>
-    <small>Days remaining</small>
+  <p>Every quest completed is one step closer to SPM.</p>
+</div>
+<div class="card countdown">
+  <div class="section-title">⏳ SPM COUNTDOWN</div>
+  <div class="big-count" id="homeCountdown">--</div>
+  <div class="count-label">days until SPM Day 1</div>
+  <div class="warning">🚨 23 NOVEMBER 2026 — MENULIS STARTS</div>
+</div>
+<div class="card">
+  <div class="section-title">🎯 Today's Quests</div>
+  <div class="quest-input">
+    <input id="taskInput" placeholder="Add a study quest...">
+    <select id="subjectSelect">
+      <option>BM</option>
+      <option>English</option>
+      <option>Mathematics</option>
+      <option>Add Maths</option>
+      <option>Sejarah</option>
+      <option>Moral</option>
+      <option>Physics</option>
+      <option>Chemistry</option>
+      <option>Chinese</option>
+      <option>Sains Komputer</option>
+    </select>
+    <button class="primary" onclick="addTask()">+</button>
   </div>
-</section>
-
-<section class="section">
-<div class="section-title">
-  <h2>🎯 Today's Quests</h2>
+  <div id="taskList"></div>
 </div>
-<div id="taskList"></div>
-
-<div class="card add-box">
-  <input id="taskInput" placeholder="Add a study quest...">
-  <select id="subjectInput">
-    <option>Bahasa Melayu</option>
-    <option>English</option>
-    <option>Mathematics</option>
-    <option>Add Maths</option>
-    <option>Sejarah</option>
-    <option>Moral</option>
-    <option>Physics</option>
-    <option>Chemistry</option>
-    <option>Chinese (BC)</option>
-    <option>Sains Komputer</option>
-  </select>
-  <button class="primary" onclick="addTask()">＋ Add Quest</button>
-</div>
-</section>
-
-<section class="section">
 <div class="card timer">
-  <div class="section-title">
-    <h2>⏱️ Focus Quest</h2>
+  <div class="section-title">⏱ Focus Timer</div>
+  <div class="timer-display" id="timerDisplay">25:00</div>
+  <div class="timer-buttons">
+    <button onclick="setTimer(25)" id="t25" class="active">25m</button>
+    <button onclick="setTimer(45)" id="t45">45m</button>
+    <button onclick="setTimer(60)" id="t60">60m</button>
+    <button onclick="setTimer(90)" id="t90">90m</button>
   </div>
-  <div class="timer-options">
-    <button onclick="setTimer(25,this)">25 min</button>
-    <button class="active" onclick="setTimer(45,this)">45 min</button>
-    <button onclick="setTimer(60,this)">60 min</button>
-    <button onclick="setTimer(90,this)">90 min</button>
+  <div class="timer-main">
+    <button onclick="toggleTimer()" id="timerBtn">Start Focus</button>
+    <button onclick="resetTimer()" style="background:#78716c">Reset</button>
   </div>
-  <div class="timer-display" id="timer">45:00</div>
-  <div class="timer-controls">
-    <button onclick="startTimer()" id="startBtn">Start</button>
-    <button onclick="resetTimer()">Reset</button>
+</div>
+<div class="card pet-card">
+  <div class="section-title">🐾 Your Study Pet</div>
+  <div class="pet-stage">
+    <div class="sun"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="ground"></div>
+<div class="pet" id="pet">
+  <div class="zzz">Z</div>
+  <svg viewBox="0 0 180 190">
+    <!-- tail -->
+    <path class="tail"
+      d="M142 126 C171 108 168 78 151 76 C140 75 139 90 148 95"
+      fill="none"
+      stroke="#a16207"
+      stroke-width="15"
+      stroke-linecap="round"/>
+    <!-- body -->
+    <ellipse cx="91" cy="132" rx="52" ry="43" fill="#f59e0b"/>
+    <!-- belly -->
+    <ellipse cx="91" cy="143" rx="30" ry="25" fill="#fef3c7"/>
+    <!-- ears -->
+    <path d="M50 67 L47 30 Q47 20 57 27 L77 48Z" fill="#f59e0b"/>
+    <path d="M110 48 L130 27 Q140 20 140 31 L137 67Z" fill="#f59e0b"/>
+    <path d="M54 43 L56 33 L68 50Z" fill="#fbcfe8"/>
+    <path d="M119 50 L132 33 L134 43Z" fill="#fbcfe8"/>
+    <!-- head -->
+    <circle cx="91" cy="76" r="48" fill="#f59e0b"/>
+    <!-- face -->
+    <ellipse cx="91" cy="88" rx="35" ry="28" fill="#fef3c7"/>
+    <!-- eyes -->
+    <ellipse class="eye" cx="73" cy="73" rx="6" ry="8" fill="#292524"/>
+    <ellipse class="eye" cx="109" cy="73" rx="6" ry="8" fill="#292524"/>
+    <!-- cheeks -->
+    <ellipse class="cheek" cx="61" cy="89" rx="8" ry="4" fill="#fb7185"/>
+    <ellipse class="cheek" cx="121" cy="89" rx="8" ry="4" fill="#fb7185"/>
+    <!-- nose -->
+    <path d="M86 83 Q91 79 96 83 Q94 89 91 89 Q88 89 86 83Z" fill="#78350f"/>
+    <!-- happy mouth -->
+    <path class="mouth-happy"
+      d="M83 91 Q91 99 99 91"
+      fill="none"
+      stroke="#78350f"
+      stroke-width="3"
+      stroke-linecap="round"/>
+    <!-- sleeping mouth -->
+    <path class="mouth-sleep"
+      d="M87 91 Q91 94 95 91"
+      fill="none"
+      stroke="#78350f"
+      stroke-width="3"
+      stroke-linecap="round"/>
+    <!-- paws -->
+    <ellipse cx="61" cy="151" rx="14" ry="20" fill="#f59e0b"/>
+    <ellipse cx="121" cy="151" rx="14" ry="20" fill="#f59e0b"/>
+    <!-- feet -->
+    <ellipse cx="70" cy="169" rx="20" ry="10" fill="#d97706"/>
+    <ellipse cx="112" cy="169" rx="20" ry="10" fill="#d97706"/>
+  </svg>
+</div>
+  </div>
+  <div class="pet-info">
+    <div class="pet-name">Mochi 🐾</div>
+    <div class="level">Level <span id="petLevel">1</span> · <span id="petStatus">Happy</span></div>
+<div class="bars">
+  <div class="bar-row">
+    <span>🍖 Fullness</span>
+    <div class="bar"><div id="fullnessBar" class="bar-fill feed"></div></div>
+    <span id="fullnessText">70</span>
+  </div>
+  <div class="bar-row">
+    <span>⚡ Energy</span>
+    <div class="bar"><div id="energyBar" class="bar-fill energy"></div></div>
+    <span id="energyText">80</span>
+  </div>
+  <div class="bar-row">
+    <span>💛 Happiness</span>
+    <div class="bar"><div id="happyBar" class="bar-fill happy"></div></div>
+    <span id="happyText">75</span>
+  </div>
+  <div class="bar-row">
+    <span>✨ EXP</span>
+    <div class="bar"><div id="expBar" class="bar-fill exp"></div></div>
+    <span id="expText">0/100</span>
+  </div>
+</div>
+<div class="pet-actions">
+  <button onclick="feedPet()">🍎 Feed</button>
+  <button onclick="playPet()">🎾 Play</button>
+  <button onclick="restPet()">💤 Rest</button>
+</div>
   </div>
 </div>
 </section>
-
-<section class="section">
-<div class="card pet-card">
-  <div class="pet" id="pet">🐱</div>
-  <div class="pet-info">
-    <div class="pet-name">Mochi</div>
-    <div>Level <span id="petLevel">1</span> · Happiness <span id="happiness">50</span>%</div>
-    <div class="bar"><span id="happinessBar"></span></div>
-    <div class="pet-buttons">
-      <button onclick="feedPet()">🍖 Feed</button>
-      <button onclick="playPet()">🧸 Play</button>
+<!-- PROGRESS -->
+<section id="progress" class="page">
+<div class="card">
+  <div class="section-title">📈 Subject Progress</div>
+  <div id="progressList"></div>
+</div>
+</section>
+<!-- PET ROOM -->
+<section id="petroom" class="page">
+<div class="card">
+  <div class="section-title">🏠 Mochi's Room</div>
+  <p style="color:#78716c;font-size:13px">
+    Spend your coins to make Mochi's room happier.
+  </p>
+  <div class="shop-grid">
+    <div class="shop-item">
+      <div class="shop-icon">🍎</div>
+      <strong>Apple</strong><br>
+      <small>+20 Fullness</small>
+      <button onclick="buyItem('apple',10)">10 🪙</button>
+    </div>
+<div class="shop-item">
+  <div class="shop-icon">🍰</div>
+  <strong>Cake</strong><br>
+  <small>+25 Happiness</small>
+  <button onclick="buyItem('cake',20)">20 🪙</button>
+</div>
+<div class="shop-item">
+  <div class="shop-icon">🧸</div>
+  <strong>Teddy</strong><br>
+  <small>+20 Happiness</small>
+  <button onclick="buyItem('teddy',30)">30 🪙</button>
+</div>
+<div class="shop-item">
+  <div class="shop-icon">🛏️</div>
+  <strong>Bed</strong><br>
+  <small>+25 Energy</small>
+  <button onclick="buyItem('bed',40)">40 🪙</button>
+</div>
+<div class="shop-item">
+  <div class="shop-icon">🌱</div>
+  <strong>Plant</strong><br>
+  <small>Room decoration</small>
+  <button onclick="buyItem('plant',25)">25 🪙</button>
+</div>
+<div class="shop-item">
+  <div class="shop-icon">🎮</div>
+  <strong>Game Console</strong><br>
+  <small>+35 Happiness</small>
+  <button onclick="buyItem('console',50)">50 🪙</button>
+</div>
+  </div>
+</div>
+</section>
+<!-- TIMELINE -->
+<section id="timeline" class="page">
+<div class="card timeline-hero">
+  <div class="section-title">🚨 SPM TIMELINE</div>
+  <div class="exam-date">23 NOVEMBER 2026</div>
+  <div class="days-left" id="timelineDays">--</div>
+  <div class="days-text">DAYS LEFT UNTIL MENULIS</div>
+</div>
+<div class="card">
+  <div class="section-title">📅 Your SPM Calendar</div>
+  <p style="font-size:12px;color:#78716c">
+    The closer the red date gets, the less time you have. Don't wait until the last minute.
+  </p>
+  <div id="calendarContainer"></div>
+  <div class="exam-list">
+    <div class="exam-row">
+      <span>📝 SPM Day 1</span>
+      <strong>23/11/2026</strong>
+    </div>
+    <div class="exam-row">
+      <span>🔥 Final Revision Zone</span>
+      <strong>NOW → 22/11</strong>
     </div>
   </div>
 </div>
 </section>
-
-</main>
-
-<section id="progressPage" class="section hidden">
-<div class="section-title">
-  <h2>📊 SPM Progress</h2>
 </div>
-<div class="card" id="progressList"></div>
-</section>
-
-<section id="petPage" class="section hidden">
-<div class="section-title">
-  <h2>🏠 Mochi's Room</h2>
-</div>
-<div class="card pet-card">
-  <div class="pet">🐱</div>
-  <div>
-    <h2>Mochi</h2>
-    <p>Keep studying to unlock more items!</p>
-    <p>⭐ Level <span id="roomLevel">1</span></p>
-    <p>🪙 Coins: <span id="roomCoins">0</span></p>
+<div class="bottom-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showPage('home',this)">
+      <span>🏠</span>Home
+    </button>
+    <button class="nav-btn" onclick="showPage('progress',this)">
+      <span>📈</span>Progress
+    </button>
+    <button class="nav-btn" onclick="showPage('petroom',this)">
+      <span>🐾</span>Pet Room
+    </button>
+    <button class="nav-btn" onclick="showPage('timeline',this)">
+      <span>📅</span>Timeline
+    </button>
   </div>
 </div>
-<div class="card reward">
-  <h3>🎁 Reward Shop</h3>
-  <button onclick="buyReward(20,'🍓')">🍓 Snack · 20🪙</button>
-  <button onclick="buyReward(40,'🧸')">🧸 Toy · 40🪙</button>
-  <button onclick="buyReward(80,'🪴')">🪴 Plant · 80🪙</button>
-</div>
-</section>
-
-<section id="calendarPage" class="section hidden">
-<div class="section-title">
-  <h2>📅 Study Timeline</h2>
-</div>
-<div class="card">
-  <h3>September 2026</h3>
-  <p>Focus: rebuild your study routine.</p>
-  <p>🎯 Priority: Chemistry + Add Maths basics</p>
-  <p>⭐ Protect your A-target subjects.</p>
-</div>
-<div class="card">
-  <h3>October 2026</h3>
-  <p>Focus: topical practice + past-year questions.</p>
-</div>
-<div class="card">
-  <h3>November 2026</h3>
-  <p>Focus: final revision + exam technique.</p>
-</div>
-</section>
-
-<nav>
-  <button class="active" onclick="showPage('home',this)">🏠<br>Home</button>
-  <button onclick="showPage('progressPage',this)">📊<br>Progress</button>
-  <button onclick="showPage('petPage',this)">🐱<br>Pet</button>
-  <button onclick="showPage('calendarPage',this)">📅<br>Timeline</button>
-</nav>
-
-</div>
-
 <div class="toast" id="toast"></div>
-
 <script>
-const subjects=[
-"Bahasa Melayu","English","Mathematics","Add Maths","Sejarah",
-"Moral","Physics","Chemistry","Chinese (BC)","Sains Komputer"
-];
-
-let data=JSON.parse(localStorage.getItem("spmQuestData"))||{
+const PASSWORD="Yuxuan521";
+const EXAM_DATE=new Date("2026-11-23T08:00:00+08:00");
+let data=JSON.parse(localStorage.getItem("spmQuestData")||"null")||{
   xp:0,
-  coins:0,
-  happiness:50,
-  level:1,
+  coins:30,
   tasks:[
-    {name:"Revise one topic",subject:"Chemistry",done:false},
-    {name:"Complete 10 questions",subject:"Add Maths",done:false},
-    {name:"Read Sejarah notes",subject:"Sejarah",done:false}
+    {name:"Revise Chemistry basics",subject:"Chemistry",done:false},
+    {name:"Practise Add Maths",subject:"Add Maths",done:false},
+    {name:"Review Sejarah",subject:"Sejarah",done:false}
   ],
-  progress:{}
+  progress:{
+    BM:0,
+    English:0,
+    Mathematics:0,
+    "Add Maths":0,
+    Sejarah:0,
+    Moral:0,
+    Physics:0,
+    Chemistry:0,
+    Chinese:0,
+    "Sains Komputer":0
+  },
+  pet:{
+    level:1,
+    fullness:70,
+    energy:80,
+    happiness:75,
+    exp:0
+  }
 };
-
-subjects.forEach(s=>{
-  if(data.progress[s]===undefined)data.progress[s]=0;
-});
-
+let timerMinutes=25;
+let timerSeconds=0;
+let timerRunning=false;
+let timerInterval=null;
 function save(){
   localStorage.setItem("spmQuestData",JSON.stringify(data));
-  updateStats();
-  updatePet();
-  updateProgress();
 }
-
+function toast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),1800);
+}
 function updateStats(){
   document.getElementById("xp").textContent=data.xp;
   document.getElementById("coins").textContent=data.coins;
 }
-
-function toast(msg){
-  const t=document.getElementById("toast");
-  t.textContent=msg;
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),1800);
-}
-
 function renderTasks(){
   const list=document.getElementById("taskList");
-
+  list.innerHTML="";
   if(data.tasks.length===0){
-    list.innerHTML='<div class="card empty">No quests yet. Add one above ✨</div>';
+    list.innerHTML='<p style="color:#a8a29e;font-size:13px">No quests yet. Add one above.</p>';
     return;
   }
-
-  list.innerHTML=data.tasks.map((task,i)=>`
-    <div class="card task">
-      <button class="checkbox ${task.done?'done':''}" onclick="completeTask(${i})">
-        ${task.done?'✓':''}
-      </button>
+  data.tasks.forEach((task,index)=>{
+    const div=document.createElement("div");
+    div.className="task "+(task.done?"done":"");
+    div.innerHTML=`
+      <input type="checkbox" ${task.done?"checked":""}
+        onchange="toggleTask(${index})">
       <div class="task-info">
-        <div class="task-name" style="${task.done?'text-decoration:line-through;color:#a8a29e':''}">
-          ${escapeHTML(task.name)}
-        </div>
-        <div class="task-meta">
-          ${escapeHTML(task.subject)}
-          <span class="subject">+20 XP</span>
-        </div>
+        <div class="task-name">${escapeHTML(task.name)}</div>
+        <span class="subject">${escapeHTML(task.subject)}</span>
       </div>
-      <button class="delete" onclick="deleteTask(${i})">🗑️</button>
-    </div>
-  `).join("");
+    `;
+    list.appendChild(div);
+  });
 }
-
 function escapeHTML(str){
   return str.replace(/[&<>"']/g,m=>({
     "&":"&amp;",
@@ -556,215 +948,346 @@ function escapeHTML(str){
     "'":"&#039;"
   }[m]));
 }
-
 function addTask(){
   const input=document.getElementById("taskInput");
-  const subject=document.getElementById("subjectInput");
-
-  if(!input.value.trim()){
-    toast("Write your quest first!");
-    return;
-  }
-
+  const name=input.value.trim();
+  if(!name)return;
+  const subject=document.getElementById("subjectSelect").value;
   data.tasks.push({
-    name:input.value.trim(),
-    subject:subject.value,
+    name,
+    subject,
     done:false
   });
-
   input.value="";
   save();
   renderTasks();
   toast("Quest added! 🎯");
 }
-
-function completeTask(i){
-  const task=data.tasks[i];
-
+function toggleTask(index){
+  const task=data.tasks[index];
   if(task.done){
     task.done=false;
-    data.xp=Math.max(0,data.xp-20);
-    data.coins=Math.max(0,data.coins-5);
-    data.progress[task.subject]=Math.max(0,data.progress[task.subject]-5);
-    toast("Quest unchecked.");
   }else{
     task.done=true;
     data.xp+=20;
     data.coins+=5;
-    data.progress[task.subject]=Math.min(100,data.progress[task.subject]+5);
-    toast("+20 XP · +5 coins! ⭐");
+    if(data.progress[task.subject]!==undefined){
+      data.progress[task.subject]=Math.min(
+        100,
+        data.progress[task.subject]+5
+      );
+    }
+    gainPetExp(15);
+    data.pet.energy=Math.max(0,data.pet.energy-5);
+    data.pet.happiness=Math.min(100,data.pet.happiness+5);
+    animatePet("playing");
+    toast("+20 XP · +5 Coins · Mochi gained EXP! 🐾");
   }
-
-  updateLevel();
   save();
-  renderTasks();
+  updateAll();
 }
-
-function deleteTask(i){
-  data.tasks.splice(i,1);
-  save();
-  renderTasks();
-  toast("Quest removed.");
-}
-
-function updateLevel(){
-  data.level=Math.max(1,Math.floor(data.xp/100)+1);
-}
-
-function updatePet(){
-  document.getElementById("happiness").textContent=data.happiness;
-  document.getElementById("happinessBar").style.width=data.happiness+"%";
-  document.getElementById("petLevel").textContent=data.level;
-  document.getElementById("roomLevel").textContent=data.level;
-  document.getElementById("roomCoins").textContent=data.coins;
-
-  const pets=["🐱","😺","😸","😻","😽","😼"];
-  document.getElementById("pet").textContent=pets[Math.min(pets.length-1,Math.floor((data.level-1)/2))];
-}
-
-function feedPet(){
-  if(data.coins<10){
-    toast("You need 10 coins 🍖");
-    return;
-  }
-  data.coins-=10;
-  data.happiness=Math.min(100,data.happiness+10);
-  save();
-  toast("Mochi is happy! 🥰");
-}
-
-function playPet(){
-  if(data.coins<15){
-    toast("You need 15 coins 🧸");
-    return;
-  }
-  data.coins-=15;
-  data.happiness=Math.min(100,data.happiness+15);
-  save();
-  toast("Mochi had fun! 🎉");
-}
-
-function buyReward(cost,item){
-  if(data.coins<cost){
-    toast("Not enough coins!");
-    return;
-  }
-  data.coins-=cost;
-  data.happiness=Math.min(100,data.happiness+5);
-  save();
-  toast(item+" unlocked! 🎁");
-}
-
-function updateProgress(){
-  document.getElementById("progressList").innerHTML=subjects.map(s=>`
-    <div class="progress-row">
-      <div class="progress-label">
-        <span>${s}</span>
-        <span>${data.progress[s]}%</span>
-      </div>
-      <div class="subject-bar">
-        <span style="width:${data.progress[s]}%"></span>
-      </div>
-    </div>
-  `).join("");
-}
-
-function showPage(id,button){
-  ["home","progressPage","petPage","calendarPage"].forEach(x=>{
-    document.getElementById(x).classList.add("hidden");
-  });
-
-  document.getElementById(id).classList.remove("hidden");
-
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  button.classList.add("active");
-
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-let timerSeconds=45*60;
-let timerInterval=null;
-let selectedMinutes=45;
-
-function setTimer(minutes,button){
-  clearInterval(timerInterval);
-  selectedMinutes=minutes;
-  timerSeconds=minutes*60;
-  document.getElementById("startBtn").textContent="Start";
-
-  document.querySelectorAll(".timer-options button")
+function setTimer(minutes){
+  stopTimer();
+  timerMinutes=minutes;
+  timerSeconds=0;
+  document.querySelectorAll(".timer-buttons button")
     .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
-  displayTimer();
+  document.getElementById("t"+minutes).classList.add("active");
+  updateTimerDisplay();
 }
-
-function displayTimer(){
-  const m=Math.floor(timerSeconds/60);
-  const s=timerSeconds%60;
-  document.getElementById("timer").textContent=
-    `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+function updateTimerDisplay(){
+  const m=String(timerMinutes).padStart(2,"0");
+  const s=String(timerSeconds).padStart(2,"0");
+  document.getElementById("timerDisplay").textContent=m+":"+s;
 }
-
-function startTimer(){
+function toggleTimer(){
+  if(timerRunning){
+    stopTimer();
+    return;
+  }
+  timerRunning=true;
+  document.getElementById("timerBtn").textContent="Pause";
+  timerInterval=setInterval(()=>{
+    if(timerSeconds===0){
+      if(timerMinutes===0){
+        completeFocus();
+        return;
+      }
+      timerMinutes--;
+      timerSeconds=59;
+    }else{
+      timerSeconds--;
+    }
+    updateTimerDisplay();
+  },1000);
+}
+function stopTimer(){
+  timerRunning=false;
   if(timerInterval){
     clearInterval(timerInterval);
     timerInterval=null;
-    document.getElementById("startBtn").textContent="Start";
+  }
+  document.getElementById("timerBtn").textContent="Start Focus";
+}
+function resetTimer(){
+  stopTimer();
+  const active=document.querySelector(".timer-buttons .active");
+  timerMinutes=Number(active.id.replace("t",""));
+  timerSeconds=0;
+  updateTimerDisplay();
+}
+function completeFocus(){
+  stopTimer();
+  data.xp+=30;
+  data.coins+=10;
+  gainPetExp(25);
+  data.pet.energy=Math.max(0,data.pet.energy-10);
+  data.pet.happiness=Math.min(100,data.pet.happiness+8);
+  save();
+  updateAll();
+  animatePet("playing");
+  toast("🎉 Focus session complete! +30 XP · +10 Coins");
+}
+function gainPetExp(amount){
+  data.pet.exp+=amount;
+  while(data.pet.exp>=100){
+    data.pet.exp-=100;
+    data.pet.level++;
+    data.pet.happiness=100;
+    data.pet.energy=100;
+    toast("🎊 Mochi leveled up!");
+  }
+}
+function feedPet(){
+  if(data.coins<10){
+    toast("Not enough coins! Complete quests first 🪙");
     return;
   }
-
-  document.getElementById("startBtn").textContent="Pause";
-
-  timerInterval=setInterval(()=>{
-    timerSeconds--;
-    displayTimer();
-
-    if(timerSeconds<=0){
-      clearInterval(timerInterval);
-      timerInterval=null;
-      document.getElementById("startBtn").textContent="Start";
-
-      data.xp+=30;
-      data.coins+=10;
-      updateLevel();
-      save();
-
-      toast("Focus Quest complete! +30 XP 🎉");
-      timerSeconds=selectedMinutes*60;
-      displayTimer();
-    }
-  },1000);
+  data.coins-=10;
+  data.pet.fullness=Math.min(100,data.pet.fullness+25);
+  data.pet.happiness=Math.min(100,data.pet.happiness+5);
+  gainPetExp(8);
+  animatePet("feeding");
+  save();
+  updateAll();
+  toast("🍎 Mochi is eating! +25 Fullness");
 }
-
-function resetTimer(){
-  clearInterval(timerInterval);
-  timerInterval=null;
-  timerSeconds=selectedMinutes*60;
-  document.getElementById("startBtn").textContent="Start";
-  displayTimer();
+function playPet(){
+  if(data.coins<15){
+    toast("Not enough coins! Study first 🪙");
+    return;
+  }
+  if(data.pet.energy<15){
+    toast("Mochi is too tired. Let it rest 💤");
+    return;
+  }
+  data.coins-=15;
+  data.pet.happiness=Math.min(100,data.pet.happiness+20);
+  data.pet.energy=Math.max(0,data.pet.energy-15);
+  gainPetExp(10);
+  animatePet("playing");
+  save();
+  updateAll();
+  toast("🎾 Mochi had fun! +20 Happiness");
 }
-
-function countdown(){
-  /*
-   * Placeholder SPM date.
-   * Change this later when the official SPM 2026 exam schedule is confirmed.
-   */
-  const target=new Date("2026-11-24T08:00:00+08:00");
+function restPet(){
+  data.pet.energy=Math.min(100,data.pet.energy+30);
+  data.pet.happiness=Math.min(100,data.pet.happiness+3);
+  animatePet("sleeping");
+  save();
+  updateAll();
+  toast("💤 Mochi is resting... +30 Energy");
+}
+function buyItem(type,cost){
+  if(data.coins<cost){
+    toast("You need more coins! 🪙");
+    return;
+  }
+  data.coins-=cost;
+  if(type==="apple"){
+    data.pet.fullness=Math.min(100,data.pet.fullness+20);
+  }
+  if(type==="cake"){
+    data.pet.happiness=Math.min(100,data.pet.happiness+25);
+  }
+  if(type==="teddy"){
+    data.pet.happiness=Math.min(100,data.pet.happiness+20);
+  }
+  if(type==="bed"){
+    data.pet.energy=Math.min(100,data.pet.energy+25);
+  }
+  if(type==="plant"){
+    data.pet.happiness=Math.min(100,data.pet.happiness+10);
+  }
+  if(type==="console"){
+    data.pet.happiness=Math.min(100,data.pet.happiness+35);
+  }
+  gainPetExp(5);
+  save();
+  updateAll();
+  animatePet("playing");
+  toast("✨ Mochi received a new item!");
+}
+function animatePet(type){
+  const pet=document.getElementById("pet");
+  pet.classList.remove("playing","feeding","sleeping");
+  void pet.offsetWidth;
+  pet.classList.add(type);
+  if(type!=="sleeping"){
+    setTimeout(()=>{
+      pet.classList.remove(type);
+    },2200);
+  }
+}
+function renderPet(){
+  const p=data.pet;
+  document.getElementById("petLevel").textContent=p.level;
+  document.getElementById("fullnessBar").style.width=p.fullness+"%";
+  document.getElementById("energyBar").style.width=p.energy+"%";
+  document.getElementById("happyBar").style.width=p.happiness+"%";
+  document.getElementById("expBar").style.width=p.exp+"%";
+  document.getElementById("fullnessText").textContent=p.fullness;
+  document.getElementById("energyText").textContent=p.energy;
+  document.getElementById("happyText").textContent=p.happiness;
+  document.getElementById("expText").textContent=p.exp+"/100";
+  let status="Happy";
+  if(p.energy<25)status="Sleepy";
+  else if(p.fullness<25)status="Hungry";
+  else if(p.happiness<30)status="Sad";
+  else if(p.happiness>90)status="Super Happy";
+  document.getElementById("petStatus").textContent=status;
+}
+function renderProgress(){
+  const list=document.getElementById("progressList");
+  list.innerHTML="";
+  Object.entries(data.progress).forEach(([subject,value])=>{
+    list.innerHTML+=`
+      <div class="progress-item">
+        <div class="progress-head">
+          <span>${escapeHTML(subject)}</span>
+          <span>${value}%</span>
+        </div>
+        <div class="progress-bg">
+          <div class="progress-fill" style="width:${value}%"></div>
+        </div>
+      </div>
+    `;
+  });
+}
+function updateAll(){
+  updateStats();
+  renderTasks();
+  renderPet();
+  renderProgress();
+  updateCountdown();
+}
+function updateCountdown(){
   const now=new Date();
-  const diff=target-now;
-  const days=Math.max(0,Math.ceil(diff/(1000*60*60*24)));
-  document.getElementById("countdown").textContent=days;
+  const diff=EXAM_DATE-now;
+  const days=Math.max(0,Math.ceil(diff/86400000));
+  document.getElementById("homeCountdown").textContent=days;
+  document.getElementById("timelineDays").textContent=days;
 }
-
-renderTasks();
-updateStats();
-updatePet();
-updateProgress();
-displayTimer();
-countdown();
-setInterval(countdown,60000);
+function showPage(page,button){
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
+  document.querySelectorAll(".nav-btn")
+    .forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  if(page==="timeline"){
+    renderCalendar();
+  }
+}
+function renderCalendar(){
+  const container=document.getElementById("calendarContainer");
+  container.innerHTML="";
+  const months=[
+    {year:2026,month:8,name:"September 2026"},
+    {year:2026,month:9,name:"October 2026"},
+    {year:2026,month:10,name:"November 2026"}
+  ];
+  const now=new Date();
+  months.forEach(m=>{
+    const section=document.createElement("div");
+    section.className="month";
+    const title=document.createElement("div");
+    title.className="month-title";
+    title.textContent=m.name;
+    section.appendChild(title);
+    const weekdays=document.createElement("div");
+    weekdays.className="weekdays";
+    ["M","T","W","T","F","S","S"].forEach(d=>{
+      const el=document.createElement("div");
+      el.textContent=d;
+      weekdays.appendChild(el);
+    });
+    section.appendChild(weekdays);
+    const grid=document.createElement("div");
+    grid.className="calendar-grid";
+    let first=new Date(m.year,m.month,1);
+    let firstDay=first.getDay();
+    firstDay=firstDay===0?6:firstDay-1;
+    for(let i=0;i<firstDay;i++){
+      const empty=document.createElement("div");
+      grid.appendChild(empty);
+    }
+    const total=new Date(m.year,m.month+1,0).getDate();
+    for(let day=1;day<=total;day++){
+      const el=document.createElement("div");
+      el.className="day";
+      el.textContent=day;
+      if(
+        now.getFullYear()===m.year &&
+        now.getMonth()===m.month &&
+        now.getDate()===day
+      ){
+        el.classList.add("today");
+      }
+      if(
+        m.year===2026 &&
+        m.month===10 &&
+        day===23
+      ){
+        el.classList.add("exam","first-exam");
+        const dot=document.createElement("div");
+        dot.className="dot";
+        dot.style.background="white";
+        el.appendChild(dot);
+      }
+      grid.appendChild(el);
+    }
+    section.appendChild(grid);
+    container.appendChild(section);
+  });
+}
+/* PASSWORD */
+function unlock(){
+  const input=document.getElementById("passwordInput");
+  const error=document.getElementById("lockError");
+  const box=document.getElementById("lockBox");
+  if(input.value===PASSWORD){
+    document.getElementById("lockScreen").style.display="none";
+    sessionStorage.setItem("spmUnlocked","true");
+  }else{
+    error.textContent="Wrong password. Try again.";
+    box.classList.remove("shake");
+    void box.offsetWidth;
+    box.classList.add("shake");
+    input.value="";
+  }
+}
+document.getElementById("passwordInput")
+  .addEventListener("keydown",e=>{
+    if(e.key==="Enter")unlock();
+  });
+/* INIT */
+if(sessionStorage.getItem("spmUnlocked")==="true"){
+  document.getElementById("lockScreen").style.display="none";
+}
+updateAll();
+renderCalendar();
+setInterval(updateCountdown,60000);
 </script>
-
 </body>
 </html>

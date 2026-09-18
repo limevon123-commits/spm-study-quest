@@ -29,14 +29,8 @@ header{
   justify-content:space-between;
   align-items:center;
 }
-.logo{
-  font-size:20px;
-  font-weight:800;
-}
-.stats{
-  display:flex;
-  gap:8px;
-}
+.logo{font-size:20px;font-weight:800}
+.stats{display:flex;gap:8px}
 .stat{
   background:white;
   padding:7px 10px;
@@ -51,14 +45,8 @@ header{
   border-radius:25px;
   background:linear-gradient(135deg,#fde68a,#fed7aa);
 }
-.hero h1{
-  margin:0 0 6px;
-  font-size:27px;
-}
-.hero p{
-  margin:0;
-  opacity:.75;
-}
+.hero h1{margin:0 0 6px;font-size:27px}
+.hero p{margin:0;opacity:.75}
 .card{
   background:white;
   margin:14px 16px;
@@ -71,18 +59,13 @@ header{
   font-weight:800;
   margin-bottom:13px;
 }
-.countdown{
-  text-align:center;
-}
+.countdown{text-align:center}
 .big-count{
   font-size:42px;
   font-weight:900;
   margin:5px 0;
 }
-.count-label{
-  color:#78716c;
-  font-size:13px;
-}
+.count-label{color:#78716c;font-size:13px}
 .warning{
   margin-top:12px;
   padding:10px;
@@ -138,9 +121,8 @@ header{
   text-decoration:line-through;
   opacity:.45;
 }
-.timer{
-  text-align:center;
-}
+/* TIMER */
+.timer{text-align:center}
 .timer-display{
   font-size:58px;
   font-weight:900;
@@ -175,10 +157,36 @@ header{
   color:white;
   font-weight:900;
 }
-/* PET */
-.pet-card{
+/* SUBJECT PROGRESS */
+.subject-progress-card{
+  border:2px solid #fed7aa;
+}
+.progress-item{margin:12px 0}
+.progress-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+.progress-bg{
+  height:10px;
+  background:#e7e5e4;
+  border-radius:20px;
   overflow:hidden;
 }
+.progress-fill{
+  height:100%;
+  background:#f97316;
+  border-radius:20px;
+  transition:width .4s;
+}
+.progress-empty{
+  color:#a8a29e;
+  font-size:13px;
+}
+/* PET */
+.pet-card{overflow:hidden}
 .pet-stage{
   position:relative;
   height:250px;
@@ -230,7 +238,6 @@ header{
   border-radius:50% 50% 0 0;
   background:#bbf7d0;
 }
-/* SVG PET */
 .pet{
   position:relative;
   width:170px;
@@ -239,15 +246,9 @@ header{
   animation:breathe 2.8s ease-in-out infinite;
   transform-origin:center bottom;
 }
-.pet.sleeping{
-  animation:sleep 2s ease-in-out infinite;
-}
-.pet.playing{
-  animation:jump .55s ease-in-out infinite alternate;
-}
-.pet.feeding{
-  animation:eat .35s ease-in-out infinite alternate;
-}
+.pet.sleeping{animation:sleep 2s ease-in-out infinite}
+.pet.playing{animation:jump .55s ease-in-out infinite alternate}
+.pet.feeding{animation:eat .35s ease-in-out infinite alternate}
 .pet svg{
   width:100%;
   height:100%;
@@ -261,13 +262,11 @@ header{
   transform-origin:center;
   animation:blink 4s infinite;
 }
-.cheek{
-  opacity:.45;
-}
+.cheek{opacity:.45}
 .mouth-happy{display:block}
 .mouth-sleep{display:none}
-.sleep .mouth-happy{display:none}
-.sleep .mouth-sleep{display:block}
+.sleeping .mouth-happy{display:none}
+.sleeping .mouth-sleep{display:block}
 .zzz{
   display:none;
   position:absolute;
@@ -278,17 +277,9 @@ header{
   animation:zzz 1.5s infinite;
 }
 .sleeping .zzz{display:block}
-.pet-info{
-  margin-top:14px;
-}
-.pet-name{
-  font-size:21px;
-  font-weight:900;
-}
-.level{
-  color:#78716c;
-  font-size:13px;
-}
+.pet-info{margin-top:14px}
+.pet-name{font-size:21px;font-weight:900}
+.level{color:#78716c;font-size:13px}
 .bars{
   display:grid;
   gap:8px;
@@ -330,32 +321,7 @@ header{
   background:#f5f5f4;
   font-weight:800;
 }
-.pet-actions button:active{
-  transform:scale(.96);
-}
-/* PROGRESS */
-.progress-item{
-  margin:12px 0;
-}
-.progress-head{
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
-  font-weight:800;
-  margin-bottom:5px;
-}
-.progress-bg{
-  height:10px;
-  background:#e7e5e4;
-  border-radius:20px;
-  overflow:hidden;
-}
-.progress-fill{
-  height:100%;
-  background:#f97316;
-  border-radius:20px;
-  transition:width .4s;
-}
+.pet-actions button:active{transform:scale(.96)}
 /* SHOP */
 .shop-grid{
   display:grid;
@@ -368,9 +334,7 @@ header{
   border-radius:16px;
   text-align:center;
 }
-.shop-icon{
-  font-size:32px;
-}
+.shop-icon{font-size:32px}
 .shop-item button{
   margin-top:7px;
   padding:8px 12px;
@@ -385,10 +349,16 @@ header{
   text-align:center;
   background:linear-gradient(135deg,#fee2e2,#ffedd5);
 }
+.timeline-label{
+  color:#991b1b;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:1px;
+}
 .exam-date{
   color:#dc2626;
   font-weight:900;
-  font-size:19px;
+  font-size:21px;
 }
 .days-left{
   font-size:54px;
@@ -401,9 +371,44 @@ header{
   font-weight:800;
   color:#7f1d1d;
 }
-.month{
-  margin-top:20px;
+.timeline-line{
+  position:relative;
+  margin-top:18px;
+  padding-left:22px;
 }
+.timeline-line:before{
+  content:"";
+  position:absolute;
+  left:7px;
+  top:5px;
+  bottom:5px;
+  width:3px;
+  background:#fecaca;
+}
+.milestone{
+  position:relative;
+  padding:11px 12px 11px 18px;
+  margin-bottom:10px;
+  border-radius:14px;
+  background:#fafaf9;
+}
+.milestone:before{
+  content:"";
+  position:absolute;
+  left:-20px;
+  top:15px;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:#dc2626;
+  border:3px solid white;
+}
+.milestone strong{
+  display:block;
+  color:#dc2626;
+}
+.milestone small{color:#78716c}
+.month{margin-top:20px}
 .month-title{
   font-size:19px;
   font-weight:900;
@@ -467,6 +472,7 @@ header{
   font-size:13px;
 }
 .exam-row strong{color:#dc2626}
+/* NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -499,6 +505,7 @@ header{
 .nav-btn.active{color:#f97316}
 .page{display:none}
 .page.active{display:block}
+/* TOAST */
 .toast{
   position:fixed;
   left:50%;
@@ -538,12 +545,8 @@ header{
   box-shadow:0 15px 50px #00000018;
   text-align:center;
 }
-.lock-icon{
-  font-size:55px;
-}
-.lock-box h1{
-  margin:10px 0 5px;
-}
+.lock-icon{font-size:55px}
+.lock-box h1{margin:10px 0 5px}
 .lock-box p{
   color:#78716c;
   font-size:14px;
@@ -557,9 +560,7 @@ header{
   text-align:center;
   outline:none;
 }
-.lock-box input:focus{
-  border-color:#f97316;
-}
+.lock-box input:focus{border-color:#f97316}
 .lock-box button{
   width:100%;
   padding:14px;
@@ -573,9 +574,7 @@ header{
   font-size:12px;
   min-height:18px;
 }
-.shake{
-  animation:shake .3s;
-}
+.shake{animation:shake .3s}
 @keyframes breathe{
   0%,100%{transform:scaleY(1) translateY(0)}
   50%{transform:scaleY(1.025) translateY(-2px)}
@@ -610,10 +609,18 @@ header{
   25%{transform:translateX(-7px)}
   75%{transform:translateX(7px)}
 }
+@media(max-width:500px){
+  .quest-input{
+    display:grid;
+    grid-template-columns:1fr auto;
+  }
+  .quest-input input{grid-column:1/-1}
+  .quest-input select{width:100%}
+  .big-count{font-size:38px}
+}
 </style>
 </head>
 <body>
-<!-- PASSWORD LOCK -->
 <div id="lockScreen">
   <div class="lock-box" id="lockBox">
     <div class="lock-icon">🔐</div>
@@ -632,7 +639,6 @@ header{
     <div class="stat">🪙 <span id="coins">0</span></div>
   </div>
 </header>
-<!-- HOME -->
 <section id="home" class="page active">
 <div class="hero">
   <h1>Keep going, future lawyer. ⚖️</h1>
@@ -641,26 +647,26 @@ header{
 <div class="card countdown">
   <div class="section-title">⏳ SPM COUNTDOWN</div>
   <div class="big-count" id="homeCountdown">--</div>
-  <div class="count-label">days until SPM Day 1</div>
-  <div class="warning">🚨 23 NOVEMBER 2026 — MENULIS STARTS</div>
+  <div class="count-label">days until your first SPM paper</div>
+  <div class="warning">🚨 26 OCTOBER 2026 — BERTUTUR STARTS</div>
 </div>
 <div class="card">
   <div class="section-title">🎯 Today's Quests</div>
   <div class="quest-input">
     <input id="taskInput" placeholder="Add a study quest...">
-    <select id="subjectSelect">
-      <option>BM</option>
-      <option>English</option>
-      <option>Mathematics</option>
-      <option>Add Maths</option>
-      <option>Sejarah</option>
-      <option>Moral</option>
-      <option>Physics</option>
-      <option>Chemistry</option>
-      <option>Chinese</option>
-      <option>Sains Komputer</option>
-    </select>
-    <button class="primary" onclick="addTask()">+</button>
+<select id="subjectSelect">
+  <option>BM</option>
+  <option>English</option>
+  <option>Mathematics</option>
+  <option>Add Maths</option>
+  <option>Sejarah</option>
+  <option>Moral</option>
+  <option>Physics</option>
+  <option>Chemistry</option>
+  <option>Chinese</option>
+  <option>Sains Komputer</option>
+</select>
+<button class="primary" onclick="addTask()">+</button>
   </div>
   <div id="taskList"></div>
 </div>
@@ -678,6 +684,11 @@ header{
     <button onclick="resetTimer()" style="background:#78716c">Reset</button>
   </div>
 </div>
+<!-- RESTORED SUBJECT PROGRESS ON HOME -->
+<div class="card subject-progress-card">
+  <div class="section-title">📊 Subject Progress</div>
+  <div id="homeProgressList"></div>
+</div>
 <div class="card pet-card">
   <div class="section-title">🐾 Your Study Pet</div>
   <div class="pet-stage">
@@ -688,52 +699,39 @@ header{
 <div class="pet" id="pet">
   <div class="zzz">Z</div>
   <svg viewBox="0 0 180 190">
-    <!-- tail -->
     <path class="tail"
       d="M142 126 C171 108 168 78 151 76 C140 75 139 90 148 95"
       fill="none"
       stroke="#a16207"
       stroke-width="15"
       stroke-linecap="round"/>
-    <!-- body -->
     <ellipse cx="91" cy="132" rx="52" ry="43" fill="#f59e0b"/>
-    <!-- belly -->
     <ellipse cx="91" cy="143" rx="30" ry="25" fill="#fef3c7"/>
-    <!-- ears -->
     <path d="M50 67 L47 30 Q47 20 57 27 L77 48Z" fill="#f59e0b"/>
     <path d="M110 48 L130 27 Q140 20 140 31 L137 67Z" fill="#f59e0b"/>
     <path d="M54 43 L56 33 L68 50Z" fill="#fbcfe8"/>
     <path d="M119 50 L132 33 L134 43Z" fill="#fbcfe8"/>
-    <!-- head -->
     <circle cx="91" cy="76" r="48" fill="#f59e0b"/>
-    <!-- face -->
     <ellipse cx="91" cy="88" rx="35" ry="28" fill="#fef3c7"/>
-    <!-- eyes -->
     <ellipse class="eye" cx="73" cy="73" rx="6" ry="8" fill="#292524"/>
     <ellipse class="eye" cx="109" cy="73" rx="6" ry="8" fill="#292524"/>
-    <!-- cheeks -->
     <ellipse class="cheek" cx="61" cy="89" rx="8" ry="4" fill="#fb7185"/>
     <ellipse class="cheek" cx="121" cy="89" rx="8" ry="4" fill="#fb7185"/>
-    <!-- nose -->
     <path d="M86 83 Q91 79 96 83 Q94 89 91 89 Q88 89 86 83Z" fill="#78350f"/>
-    <!-- happy mouth -->
     <path class="mouth-happy"
       d="M83 91 Q91 99 99 91"
       fill="none"
       stroke="#78350f"
       stroke-width="3"
       stroke-linecap="round"/>
-    <!-- sleeping mouth -->
     <path class="mouth-sleep"
       d="M87 91 Q91 94 95 91"
       fill="none"
       stroke="#78350f"
       stroke-width="3"
       stroke-linecap="round"/>
-    <!-- paws -->
     <ellipse cx="61" cy="151" rx="14" ry="20" fill="#f59e0b"/>
     <ellipse cx="121" cy="151" rx="14" ry="20" fill="#f59e0b"/>
-    <!-- feet -->
     <ellipse cx="70" cy="169" rx="20" ry="10" fill="#d97706"/>
     <ellipse cx="112" cy="169" rx="20" ry="10" fill="#d97706"/>
   </svg>
@@ -772,14 +770,12 @@ header{
   </div>
 </div>
 </section>
-<!-- PROGRESS -->
 <section id="progress" class="page">
 <div class="card">
   <div class="section-title">📈 Subject Progress</div>
   <div id="progressList"></div>
 </div>
 </section>
-<!-- PET ROOM -->
 <section id="petroom" class="page">
 <div class="card">
   <div class="section-title">🏠 Mochi's Room</div>
@@ -787,12 +783,12 @@ header{
     Spend your coins to make Mochi's room happier.
   </p>
   <div class="shop-grid">
-    <div class="shop-item">
-      <div class="shop-icon">🍎</div>
-      <strong>Apple</strong><br>
-      <small>+20 Fullness</small>
-      <button onclick="buyItem('apple',10)">10 🪙</button>
-    </div>
+<div class="shop-item">
+  <div class="shop-icon">🍎</div>
+  <strong>Apple</strong><br>
+  <small>+20 Fullness</small>
+  <button onclick="buyItem('apple',10)">10 🪙</button>
+</div>
 <div class="shop-item">
   <div class="shop-icon">🍰</div>
   <strong>Cake</strong><br>
@@ -826,60 +822,88 @@ header{
   </div>
 </div>
 </section>
-<!-- TIMELINE -->
 <section id="timeline" class="page">
 <div class="card timeline-hero">
-  <div class="section-title">🚨 SPM TIMELINE</div>
-  <div class="exam-date">23 NOVEMBER 2026</div>
+  <div class="timeline-label">🚨 YOUR SPM COUNTDOWN</div>
+  <div class="exam-date">
+    26 OCTOBER 2026
+  </div>
+  <div style="font-weight:900;color:#7f1d1d">
+    BERTUTUR
+  </div>
   <div class="days-left" id="timelineDays">--</div>
-  <div class="days-text">DAYS LEFT UNTIL MENULIS</div>
+  <div class="days-text">
+    DAYS UNTIL YOUR FIRST SPM PAPER
+  </div>
 </div>
 <div class="card">
-  <div class="section-title">📅 Your SPM Calendar</div>
+  <div class="section-title">🔥 Exam Timeline</div>
+  <div class="timeline-line">
+<div class="milestone">
+  <strong>26 OCTOBER 2026</strong>
+  <span>🗣️ BERTUTUR — SPM starts</span>
+  <small>Your first SPM examination stage.</small>
+</div>
+<div class="milestone">
+  <strong>23 NOVEMBER 2026</strong>
+  <span>📝 MENULIS — Written papers</span>
+  <small>Your written examination period begins.</small>
+</div>
+  </div>
+</div>
+<div class="card">
+  <div class="section-title">📅 SPM Calendar</div>
   <p style="font-size:12px;color:#78716c">
-    The closer the red date gets, the less time you have. Don't wait until the last minute.
+    Red = major SPM milestone. Orange outline = today.
   </p>
   <div id="calendarContainer"></div>
-  <div class="exam-list">
-    <div class="exam-row">
-      <span>📝 SPM Day 1</span>
-      <strong>23/11/2026</strong>
-    </div>
-    <div class="exam-row">
-      <span>🔥 Final Revision Zone</span>
-      <strong>NOW → 22/11</strong>
-    </div>
-  </div>
 </div>
 </section>
 </div>
 <div class="bottom-nav">
   <div class="nav-inner">
-    <button class="nav-btn active" onclick="showPage('home',this)">
-      <span>🏠</span>Home
-    </button>
-    <button class="nav-btn" onclick="showPage('progress',this)">
-      <span>📈</span>Progress
-    </button>
-    <button class="nav-btn" onclick="showPage('petroom',this)">
-      <span>🐾</span>Pet Room
-    </button>
-    <button class="nav-btn" onclick="showPage('timeline',this)">
-      <span>📅</span>Timeline
-    </button>
+<button class="nav-btn active" onclick="showPage('home',this)">
+  <span>🏠</span>Home
+</button>
+<button class="nav-btn" onclick="showPage('progress',this)">
+  <span>📈</span>Progress
+</button>
+<button class="nav-btn" onclick="showPage('petroom',this)">
+  <span>🐾</span>Pet Room
+</button>
+<button class="nav-btn" onclick="showPage('timeline',this)">
+  <span>📅</span>Timeline
+</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
 <script>
 const PASSWORD="Yuxuan521";
-const EXAM_DATE=new Date("2026-11-23T08:00:00+08:00");
+/* IMPORTANT:
+   26 Oct = first SPM stage (Bertutur)
+   23 Nov = written examination start
+*/
+const FIRST_SPM_DATE=new Date("2026-10-26T08:00:00+08:00");
+const MENULIS_DATE=new Date("2026-11-23T08:00:00+08:00");
 let data=JSON.parse(localStorage.getItem("spmQuestData")||"null")||{
   xp:0,
   coins:30,
   tasks:[
-    {name:"Revise Chemistry basics",subject:"Chemistry",done:false},
-    {name:"Practise Add Maths",subject:"Add Maths",done:false},
-    {name:"Review Sejarah",subject:"Sejarah",done:false}
+    {
+      name:"Revise Chemistry basics",
+      subject:"Chemistry",
+      done:false
+    },
+    {
+      name:"Practise Add Maths",
+      subject:"Add Maths",
+      done:false
+    },
+    {
+      name:"Review Sejarah",
+      subject:"Sejarah",
+      done:false
+    }
   ],
   progress:{
     BM:0,
@@ -912,41 +936,51 @@ function toast(message){
   const el=document.getElementById("toast");
   el.textContent=message;
   el.classList.add("show");
-  setTimeout(()=>el.classList.remove("show"),1800);
+  setTimeout(()=>{
+    el.classList.remove("show");
+  },1800);
 }
 function updateStats(){
   document.getElementById("xp").textContent=data.xp;
   document.getElementById("coins").textContent=data.coins;
 }
-function renderTasks(){
-  const list=document.getElementById("taskList");
-  list.innerHTML="";
-  if(data.tasks.length===0){
-    list.innerHTML='<p style="color:#a8a29e;font-size:13px">No quests yet. Add one above.</p>';
-    return;
-  }
-  data.tasks.forEach((task,index)=>{
-    const div=document.createElement("div");
-    div.className="task "+(task.done?"done":"");
-    div.innerHTML=`
-      <input type="checkbox" ${task.done?"checked":""}
-        onchange="toggleTask(${index})">
-      <div class="task-info">
-        <div class="task-name">${escapeHTML(task.name)}</div>
-        <span class="subject">${escapeHTML(task.subject)}</span>
-      </div>
-    `;
-    list.appendChild(div);
-  });
-}
 function escapeHTML(str){
-  return str.replace(/[&<>"']/g,m=>({
+  return String(str).replace(/[&<>"']/g,m=>({
     "&":"&amp;",
     "<":"&lt;",
     ">":"&gt;",
     '"':"&quot;",
     "'":"&#039;"
   }[m]));
+}
+function renderTasks(){
+  const list=document.getElementById("taskList");
+  list.innerHTML="";
+  if(data.tasks.length===0){
+    list.innerHTML=
+      '<p style="color:#a8a29e;font-size:13px">No quests yet. Add one above.</p>';
+    return;
+  }
+  data.tasks.forEach((task,index)=>{
+    const div=document.createElement("div");
+    div.className="task "+(task.done?"done":"");
+    div.innerHTML=`
+      <input
+        type="checkbox"
+        ${task.done?"checked":""}
+        onchange="toggleTask(${index})"
+      >
+      <div class="task-info">
+        <div class="task-name">
+          ${escapeHTML(task.name)}
+        </div>
+        <span class="subject">
+          ${escapeHTML(task.subject)}
+        </span>
+      </div>
+    `;
+    list.appendChild(div);
+  });
 }
 function addTask(){
   const input=document.getElementById("taskInput");
@@ -978,27 +1012,70 @@ function toggleTask(index){
       );
     }
     gainPetExp(15);
-    data.pet.energy=Math.max(0,data.pet.energy-5);
-    data.pet.happiness=Math.min(100,data.pet.happiness+5);
+    data.pet.energy=Math.max(
+      0,
+      data.pet.energy-5
+    );
+    data.pet.happiness=Math.min(
+      100,
+      data.pet.happiness+5
+    );
     animatePet("playing");
     toast("+20 XP · +5 Coins · Mochi gained EXP! 🐾");
   }
   save();
   updateAll();
 }
+function renderProgress(){
+  const targets=[
+    "BM",
+    "English",
+    "Mathematics",
+    "Add Maths",
+    "Sejarah",
+    "Moral",
+    "Physics",
+    "Chemistry",
+    "Chinese",
+    "Sains Komputer"
+  ];
+  const html=targets.map(subject=>{
+    const value=data.progress[subject]||0;
+    return `
+      <div class="progress-item">
+        <div class="progress-head">
+          <span>${escapeHTML(subject)}</span>
+          <span>${value}%</span>
+        </div>
+        <div class="progress-bg">
+          <div
+            class="progress-fill"
+            style="width:${value}%"
+          ></div>
+        </div>
+      </div>
+    `;
+  }).join("");
+  document.getElementById("progressList").innerHTML=html;
+  document.getElementById("homeProgressList").innerHTML=html;
+}
 function setTimer(minutes){
   stopTimer();
   timerMinutes=minutes;
   timerSeconds=0;
-  document.querySelectorAll(".timer-buttons button")
+  document
+    .querySelectorAll(".timer-buttons button")
     .forEach(b=>b.classList.remove("active"));
-  document.getElementById("t"+minutes).classList.add("active");
+  document
+    .getElementById("t"+minutes)
+    .classList.add("active");
   updateTimerDisplay();
 }
 function updateTimerDisplay(){
   const m=String(timerMinutes).padStart(2,"0");
   const s=String(timerSeconds).padStart(2,"0");
-  document.getElementById("timerDisplay").textContent=m+":"+s;
+  document.getElementById("timerDisplay").textContent=
+    m+":"+s;
 }
 function toggleTimer(){
   if(timerRunning){
@@ -1027,12 +1104,15 @@ function stopTimer(){
     clearInterval(timerInterval);
     timerInterval=null;
   }
-  document.getElementById("timerBtn").textContent="Start Focus";
+  document.getElementById("timerBtn").textContent=
+    "Start Focus";
 }
 function resetTimer(){
   stopTimer();
-  const active=document.querySelector(".timer-buttons .active");
-  timerMinutes=Number(active.id.replace("t",""));
+  const active=
+    document.querySelector(".timer-buttons .active");
+  timerMinutes=
+    Number(active.id.replace("t",""));
   timerSeconds=0;
   updateTimerDisplay();
 }
@@ -1041,12 +1121,18 @@ function completeFocus(){
   data.xp+=30;
   data.coins+=10;
   gainPetExp(25);
-  data.pet.energy=Math.max(0,data.pet.energy-10);
-  data.pet.happiness=Math.min(100,data.pet.happiness+8);
+  data.pet.energy=Math.max(
+    0,
+    data.pet.energy-10
+  );
+  data.pet.happiness=Math.min(
+    100,
+    data.pet.happiness+8
+  );
   save();
   updateAll();
   animatePet("playing");
-  toast("🎉 Focus session complete! +30 XP · +10 Coins");
+  toast("🎉 Focus complete! +30 XP · +10 Coins");
 }
 function gainPetExp(amount){
   data.pet.exp+=amount;
@@ -1064,8 +1150,10 @@ function feedPet(){
     return;
   }
   data.coins-=10;
-  data.pet.fullness=Math.min(100,data.pet.fullness+25);
-  data.pet.happiness=Math.min(100,data.pet.happiness+5);
+  data.pet.fullness=
+    Math.min(100,data.pet.fullness+25);
+  data.pet.happiness=
+    Math.min(100,data.pet.happiness+5);
   gainPetExp(8);
   animatePet("feeding");
   save();
@@ -1082,8 +1170,10 @@ function playPet(){
     return;
   }
   data.coins-=15;
-  data.pet.happiness=Math.min(100,data.pet.happiness+20);
-  data.pet.energy=Math.max(0,data.pet.energy-15);
+  data.pet.happiness=
+    Math.min(100,data.pet.happiness+20);
+  data.pet.energy=
+    Math.max(0,data.pet.energy-15);
   gainPetExp(10);
   animatePet("playing");
   save();
@@ -1091,8 +1181,10 @@ function playPet(){
   toast("🎾 Mochi had fun! +20 Happiness");
 }
 function restPet(){
-  data.pet.energy=Math.min(100,data.pet.energy+30);
-  data.pet.happiness=Math.min(100,data.pet.happiness+3);
+  data.pet.energy=
+    Math.min(100,data.pet.energy+30);
+  data.pet.happiness=
+    Math.min(100,data.pet.happiness+3);
   animatePet("sleeping");
   save();
   updateAll();
@@ -1104,24 +1196,24 @@ function buyItem(type,cost){
     return;
   }
   data.coins-=cost;
-  if(type==="apple"){
-    data.pet.fullness=Math.min(100,data.pet.fullness+20);
-  }
-  if(type==="cake"){
-    data.pet.happiness=Math.min(100,data.pet.happiness+25);
-  }
-  if(type==="teddy"){
-    data.pet.happiness=Math.min(100,data.pet.happiness+20);
-  }
-  if(type==="bed"){
-    data.pet.energy=Math.min(100,data.pet.energy+25);
-  }
-  if(type==="plant"){
-    data.pet.happiness=Math.min(100,data.pet.happiness+10);
-  }
-  if(type==="console"){
-    data.pet.happiness=Math.min(100,data.pet.happiness+35);
-  }
+  if(type==="apple")
+    data.pet.fullness=
+      Math.min(100,data.pet.fullness+20);
+  if(type==="cake")
+    data.pet.happiness=
+      Math.min(100,data.pet.happiness+25);
+  if(type==="teddy")
+    data.pet.happiness=
+      Math.min(100,data.pet.happiness+20);
+  if(type==="bed")
+    data.pet.energy=
+      Math.min(100,data.pet.energy+25);
+  if(type==="plant")
+    data.pet.happiness=
+      Math.min(100,data.pet.happiness+10);
+  if(type==="console")
+    data.pet.happiness=
+      Math.min(100,data.pet.happiness+35);
   gainPetExp(5);
   save();
   updateAll();
@@ -1130,7 +1222,11 @@ function buyItem(type,cost){
 }
 function animatePet(type){
   const pet=document.getElementById("pet");
-  pet.classList.remove("playing","feeding","sleeping");
+  pet.classList.remove(
+    "playing",
+    "feeding",
+    "sleeping"
+  );
   void pet.offsetWidth;
   pet.classList.add(type);
   if(type!=="sleeping"){
@@ -1141,38 +1237,47 @@ function animatePet(type){
 }
 function renderPet(){
   const p=data.pet;
-  document.getElementById("petLevel").textContent=p.level;
-  document.getElementById("fullnessBar").style.width=p.fullness+"%";
-  document.getElementById("energyBar").style.width=p.energy+"%";
-  document.getElementById("happyBar").style.width=p.happiness+"%";
-  document.getElementById("expBar").style.width=p.exp+"%";
-  document.getElementById("fullnessText").textContent=p.fullness;
-  document.getElementById("energyText").textContent=p.energy;
-  document.getElementById("happyText").textContent=p.happiness;
-  document.getElementById("expText").textContent=p.exp+"/100";
+  document.getElementById("petLevel").textContent=
+    p.level;
+  document.getElementById("fullnessBar").style.width=
+    p.fullness+"%";
+  document.getElementById("energyBar").style.width=
+    p.energy+"%";
+  document.getElementById("happyBar").style.width=
+    p.happiness+"%";
+  document.getElementById("expBar").style.width=
+    p.exp+"%";
+  document.getElementById("fullnessText").textContent=
+    p.fullness;
+  document.getElementById("energyText").textContent=
+    p.energy;
+  document.getElementById("happyText").textContent=
+    p.happiness;
+  document.getElementById("expText").textContent=
+    p.exp+"/100";
   let status="Happy";
-  if(p.energy<25)status="Sleepy";
-  else if(p.fullness<25)status="Hungry";
-  else if(p.happiness<30)status="Sad";
-  else if(p.happiness>90)status="Super Happy";
-  document.getElementById("petStatus").textContent=status;
+  if(p.energy<25)
+    status="Sleepy";
+  else if(p.fullness<25)
+    status="Hungry";
+  else if(p.happiness<30)
+    status="Sad";
+  else if(p.happiness>90)
+    status="Super Happy";
+  document.getElementById("petStatus").textContent=
+    status;
 }
-function renderProgress(){
-  const list=document.getElementById("progressList");
-  list.innerHTML="";
-  Object.entries(data.progress).forEach(([subject,value])=>{
-    list.innerHTML+=`
-      <div class="progress-item">
-        <div class="progress-head">
-          <span>${escapeHTML(subject)}</span>
-          <span>${value}%</span>
-        </div>
-        <div class="progress-bg">
-          <div class="progress-fill" style="width:${value}%"></div>
-        </div>
-      </div>
-    `;
-  });
+function updateCountdown(){
+  const now=new Date();
+  const diff=FIRST_SPM_DATE-now;
+  const days=Math.max(
+    0,
+    Math.ceil(diff/86400000)
+  );
+  document.getElementById("homeCountdown").textContent=
+    days;
+  document.getElementById("timelineDays").textContent=
+    days;
 }
 function updateAll(){
   updateStats();
@@ -1181,31 +1286,40 @@ function updateAll(){
   renderProgress();
   updateCountdown();
 }
-function updateCountdown(){
-  const now=new Date();
-  const diff=EXAM_DATE-now;
-  const days=Math.max(0,Math.ceil(diff/86400000));
-  document.getElementById("homeCountdown").textContent=days;
-  document.getElementById("timelineDays").textContent=days;
-}
 function showPage(page,button){
-  document.querySelectorAll(".page")
+  document
+    .querySelectorAll(".page")
     .forEach(p=>p.classList.remove("active"));
-  document.getElementById(page).classList.add("active");
-  document.querySelectorAll(".nav-btn")
+  document
+    .getElementById(page)
+    .classList.add("active");
+  document
+    .querySelectorAll(".nav-btn")
     .forEach(b=>b.classList.remove("active"));
   button.classList.add("active");
-  if(page==="timeline"){
+  if(page==="timeline")
     renderCalendar();
-  }
 }
 function renderCalendar(){
-  const container=document.getElementById("calendarContainer");
+  const container=
+    document.getElementById("calendarContainer");
   container.innerHTML="";
   const months=[
-    {year:2026,month:8,name:"September 2026"},
-    {year:2026,month:9,name:"October 2026"},
-    {year:2026,month:10,name:"November 2026"}
+    {
+      year:2026,
+      month:8,
+      name:"September 2026"
+    },
+    {
+      year:2026,
+      month:9,
+      name:"October 2026"
+    },
+    {
+      year:2026,
+      month:10,
+      name:"November 2026"
+    }
   ];
   const now=new Date();
   months.forEach(m=>{
@@ -1217,24 +1331,36 @@ function renderCalendar(){
     section.appendChild(title);
     const weekdays=document.createElement("div");
     weekdays.className="weekdays";
-    ["M","T","W","T","F","S","S"].forEach(d=>{
-      const el=document.createElement("div");
-      el.textContent=d;
-      weekdays.appendChild(el);
-    });
+    ["M","T","W","T","F","S","S"]
+      .forEach(d=>{
+        const el=document.createElement("div");
+        el.textContent=d;
+        weekdays.appendChild(el);
+      });
     section.appendChild(weekdays);
     const grid=document.createElement("div");
     grid.className="calendar-grid";
-    let first=new Date(m.year,m.month,1);
+    let first=
+      new Date(m.year,m.month,1);
     let firstDay=first.getDay();
-    firstDay=firstDay===0?6:firstDay-1;
+    firstDay=
+      firstDay===0
+      ?6
+      :firstDay-1;
     for(let i=0;i<firstDay;i++){
-      const empty=document.createElement("div");
+      const empty=
+        document.createElement("div");
       grid.appendChild(empty);
     }
-    const total=new Date(m.year,m.month+1,0).getDate();
+    const total=
+      new Date(
+        m.year,
+        m.month+1,
+        0
+      ).getDate();
     for(let day=1;day<=total;day++){
-      const el=document.createElement("div");
+      const el=
+        document.createElement("div");
       el.className="day";
       el.textContent=day;
       if(
@@ -1244,13 +1370,30 @@ function renderCalendar(){
       ){
         el.classList.add("today");
       }
+      /* BERTUTUR */
+      if(
+        m.year===2026 &&
+        m.month===9 &&
+        day===26
+      ){
+        el.classList.add("exam");
+        const dot=
+          document.createElement("div");
+        dot.className="dot";
+        el.appendChild(dot);
+      }
+      /* MENULIS */
       if(
         m.year===2026 &&
         m.month===10 &&
         day===23
       ){
-        el.classList.add("exam","first-exam");
-        const dot=document.createElement("div");
+        el.classList.add(
+          "exam",
+          "first-exam"
+        );
+        const dot=
+          document.createElement("div");
         dot.className="dot";
         dot.style.background="white";
         el.appendChild(dot);
@@ -1263,30 +1406,43 @@ function renderCalendar(){
 }
 /* PASSWORD */
 function unlock(){
-  const input=document.getElementById("passwordInput");
-  const error=document.getElementById("lockError");
-  const box=document.getElementById("lockBox");
+  const input=
+    document.getElementById("passwordInput");
+  const error=
+    document.getElementById("lockError");
+  const box=
+    document.getElementById("lockBox");
   if(input.value===PASSWORD){
-    document.getElementById("lockScreen").style.display="none";
-    sessionStorage.setItem("spmUnlocked","true");
+    document.getElementById("lockScreen")
+      .style.display="none";
+    sessionStorage.setItem(
+      "spmUnlocked",
+      "true"
+    );
   }else{
-    error.textContent="Wrong password. Try again.";
+    error.textContent=
+      "Wrong password. Try again.";
     box.classList.remove("shake");
     void box.offsetWidth;
     box.classList.add("shake");
     input.value="";
   }
 }
-document.getElementById("passwordInput")
+document
+  .getElementById("passwordInput")
   .addEventListener("keydown",e=>{
-    if(e.key==="Enter")unlock();
+    if(e.key==="Enter")
+      unlock();
   });
-/* INIT */
-if(sessionStorage.getItem("spmUnlocked")==="true"){
-  document.getElementById("lockScreen").style.display="none";
+if(
+  sessionStorage.getItem("spmUnlocked")==="true"
+){
+  document.getElementById("lockScreen")
+    .style.display="none";
 }
 updateAll();
 renderCalendar();
+updateTimerDisplay();
 setInterval(updateCountdown,60000);
 </script>
 </body>

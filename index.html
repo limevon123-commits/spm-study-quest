@@ -110,7 +110,7 @@ header{
   background:#fafaf9;
   border-radius:15px;
 }
-.task input{width:20px;height:20px}
+.task input[type="checkbox"]{width:20px;height:20px}
 .task-info{flex:1}
 .task-name{font-weight:700}
 .subject{
@@ -118,6 +118,17 @@ header{
   margin-top:3px;
   font-size:11px;
   color:#78716c;
+}
+.delete-btn{
+  background:transparent;
+  color:#a8a29e;
+  font-size:16px;
+  padding:4px 8px;
+  border-radius:8px;
+}
+.delete-btn:hover{
+  color:#dc2626;
+  background:#fee2e2;
 }
 .done .task-name{
   text-decoration:line-through;
@@ -157,9 +168,6 @@ header{
   background:#f97316;
   color:white;
   font-weight:900;
-}
-.subject-progress-card{
-  border:2px solid #fed7aa;
 }
 .progress-item{margin:12px 0}
 .progress-head{
@@ -321,6 +329,7 @@ header{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:9px;
+  margin-top:14px;
 }
 .shop-item{
   padding:15px;
@@ -645,6 +654,7 @@ header{
       <option>Fizik</option>
       <option>Kimia</option>
       <option>Sains Komputer</option>
+      <option>Bahasa Cina</option>
     </select>
     <button class="primary" onclick="addTask()">+</button>
   </div>
@@ -664,13 +674,18 @@ header{
     <button onclick="resetTimer()" style="background:#78716c">Reset</button>
   </div>
 </div>
+</section>
 
-<!-- SUBJECT PROGRESS (HOME) -->
-<div class="card subject-progress-card">
-  <div class="section-title">📊 Subject Progress</div>
-  <div id="homeProgressList"></div>
+<!-- PROGRESS PAGE -->
+<section id="progress" class="page">
+<div class="card">
+  <div class="section-title">📈 Subject Progress</div>
+  <div id="progressList"></div>
 </div>
+</section>
 
+<!-- PET ROOM PAGE -->
+<section id="petroom" class="page">
 <div class="card pet-card">
   <div class="section-title">🐾 Your Study Pet</div>
   <div class="pet-stage">
@@ -751,18 +766,7 @@ header{
     </div>
   </div>
 </div>
-</section>
 
-<!-- PROGRESS PAGE -->
-<section id="progress" class="page">
-<div class="card">
-  <div class="section-title">📈 Subject Progress</div>
-  <div id="progressList"></div>
-</div>
-</section>
-
-<!-- PET ROOM PAGE -->
-<section id="petroom" class="page">
 <div class="card">
   <div class="section-title">🏠 Mochi's Room</div>
   <p style="color:#78716c;font-size:13px">
@@ -830,16 +834,52 @@ header{
       <span>🗣️ Ujian Bertutur BI</span>
     </div>
     <div class="milestone">
-      <strong>10 NOV 2026</strong>
-      <span>🎧 Ujian Mendengar BM & BI</span>
+      <strong>16 NOV 2026</strong>
+      <span>⚡ Ujian Amali Fizik</span>
     </div>
     <div class="milestone">
-      <strong>11 NOV 2026</strong>
-      <span>🧪 Ujian Amali Sains (Fizik / Kimia)</span>
+      <strong>17 NOV 2026</strong>
+      <span>🧪 Ujian Amali Kimia</span>
     </div>
     <div class="milestone">
       <strong>23 NOV 2026</strong>
-      <span>📝 Ujian Bertulis Starts (BM P1 & P2)</span>
+      <span>📝 BM Mendengar & Bertulis (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>24 NOV 2026</strong>
+      <span>📝 BI Mendengar & Reading/Writing (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>25 NOV 2026</strong>
+      <span>📖 Pendidikan Moral (P1)</span>
+    </div>
+    <div class="milestone">
+      <strong>26 NOV 2026</strong>
+      <span>📐 Matematik (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>30 NOV 2026</strong>
+      <span>📖 Sejarah (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>03 DEC 2026</strong>
+      <span>⚡ Fizik (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>08 DEC 2026</strong>
+      <span>🇨🇳 Bahasa Cina (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>10 DEC 2026</strong>
+      <span>💻 Sains Komputer (P1)</span>
+    </div>
+    <div class="milestone">
+      <strong>15 DEC 2026</strong>
+      <span>🧪 Kimia (P1+P2)</span>
+    </div>
+    <div class="milestone">
+      <strong>17 DEC 2026</strong>
+      <span>📐 Matematik Tambahan (P1+P2)</span>
     </div>
   </div>
 </div>
@@ -873,7 +913,7 @@ header{
 
 <script>
 const PASSWORD="Yuxuan521";
-const STORAGE_KEY = "spmQuestData_v3";
+const STORAGE_KEY = "spmQuestData_v4";
 
 const SUBJECTS_LIST = [
   "Bahasa Melayu",
@@ -884,7 +924,8 @@ const SUBJECTS_LIST = [
   "Add Math",
   "Fizik",
   "Kimia",
-  "Sains Komputer"
+  "Sains Komputer",
+  "Bahasa Cina"
 ];
 
 const SPM_SCHEDULE = {
@@ -896,17 +937,18 @@ const SPM_SCHEDULE = {
   "2026-11-03": "BI Oral",
   "2026-11-04": "BI Oral",
   "2026-11-05": "BI Oral",
-  "2026-11-10": "BM/BI List.",
-  "2026-11-11": "Amali Sains",
-  "2026-11-23": "BM P1/P2",
-  "2026-11-24": "BI P1/P2",
-  "2026-11-25": "Sejarah P1/P2",
-  "2026-11-26": "Maths P1/P2",
-  "2026-11-30": "Moral / BC",
-  "2026-12-01": "Add Math P1/P2",
-  "2026-12-02": "SK P1/P2",
+  "2026-11-16": "Amali Fizik",
+  "2026-11-17": "Amali Kimia",
+  "2026-11-23": "BM P1/P2/P4",
+  "2026-11-24": "BI P1/P2/P4",
+  "2026-11-25": "Moral P1",
+  "2026-11-26": "Math P1/P2",
+  "2026-11-30": "Sejarah P1/P2",
   "2026-12-03": "Fizik P1/P2",
-  "2026-12-07": "Kimia P1/P2"
+  "2026-12-08": "BC P1/P2",
+  "2026-12-10": "SK P1",
+  "2026-12-15": "Kimia P1/P2",
+  "2026-12-17": "AddMath P1/P2"
 };
 
 let data = {
@@ -978,6 +1020,7 @@ function renderTasks(){
         <div class="task-name">${escapeHTML(task.name)}</div>
         <span class="subject">${escapeHTML(task.subject)}</span>
       </div>
+      <button class="delete-btn" onclick="deleteTask(${index})" title="Delete quest">🗑️</button>
     `;
     list.appendChild(div);
   });
@@ -993,6 +1036,13 @@ function addTask(){
   save();
   renderTasks();
   toast("Quest added! 🎯");
+}
+
+function deleteTask(index){
+  data.tasks.splice(index, 1);
+  save();
+  renderTasks();
+  toast("Quest deleted 🗑️");
 }
 
 function toggleTask(index){
@@ -1032,10 +1082,8 @@ function renderProgress(){
     `;
   }).join("");
   
-  const el1 = document.getElementById("progressList");
-  const el2 = document.getElementById("homeProgressList");
-  if(el1) el1.innerHTML=html;
-  if(el2) el2.innerHTML=html;
+  const el = document.getElementById("progressList");
+  if(el) el.innerHTML=html;
 }
 
 function setTimer(minutes){
@@ -1210,7 +1258,7 @@ function renderPet(){
 }
 
 function updateCountdown(){
-  const targetDate = new Date(2026, 9, 26, 0, 0, 0); // Month 9 is October
+  const targetDate = new Date(2026, 9, 26, 0, 0, 0); // October 26, 2026
   const now = new Date();
   const diffTime = targetDate - now;
   const days = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));

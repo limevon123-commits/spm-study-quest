@@ -17,7 +17,7 @@ body{
   color:#292524;
   min-height:100vh;
 }
-button,input,select{font:inherit}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer;border:0}
 .app{
   max-width:760px;
@@ -347,6 +347,125 @@ header{
   font-weight:800;
   font-size:12px;
 }
+
+/* TIMELINE NEW STYLES */
+.status-summary{
+  background:linear-gradient(135deg, #1e293b, #0f172a);
+  color:white;
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:14px;
+}
+.summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.summary-box{
+  background:rgba(255,255,255,0.08);
+  padding:10px;
+  border-radius:12px;
+}
+.summary-box small{
+  color:#94a3b8;
+  font-size:11px;
+  display:block;
+}
+.summary-box strong{
+  font-size:15px;
+  color:#f8fafc;
+}
+.status-badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-weight:900;
+  font-size:12px;
+  margin-top:4px;
+}
+.status-ontrack{background:#dcfce7;color:#15803d;}
+.status-catchingup{background:#fef9c3;color:#a16207;}
+.status-fallingbehind{background:#fee2e2;color:#b91c1c;}
+
+.phase-banner{
+  background:#fff3ed;
+  border-left:4px solid #f97316;
+  padding:10px 12px;
+  border-radius:0 12px 12px 0;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.weekly-card{
+  border:1px solid #e7e5e4;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:12px;
+  background:#fafaf9;
+  position:relative;
+}
+.weekly-card.current-week{
+  border:2px solid #f97316;
+  background:#fff;
+  box-shadow:0 4px 15px rgba(249,115,22,0.12);
+}
+.weekly-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+.week-title{
+  font-weight:900;
+  font-size:15px;
+}
+.week-tag{
+  font-size:10px;
+  font-weight:800;
+  padding:3px 8px;
+  border-radius:10px;
+  background:#e7e5e4;
+}
+.current-week .week-tag{
+  background:#ffedd5;
+  color:#c2410c;
+}
+.past-due-badge{
+  background:#fee2e2;
+  color:#b91c1c;
+  font-size:11px;
+  font-weight:800;
+  padding:3px 8px;
+  border-radius:8px;
+  margin-top:6px;
+  display:inline-block;
+}
+.week-detail{
+  font-size:13px;
+  color:#44403c;
+  line-height:1.5;
+}
+.week-detail span{
+  display:block;
+  margin-top:3px;
+}
+
+.checkin-form input, .checkin-form textarea{
+  width:100%;
+  padding:10px;
+  border:1px solid #e7e5e4;
+  border-radius:10px;
+  margin-top:4px;
+  margin-bottom:10px;
+  font-size:13px;
+}
+.checkin-form label{
+  font-size:12px;
+  font-weight:800;
+  color:#57534e;
+}
+
 .timeline-hero{
   text-align:center;
   background:linear-gradient(135deg,#fee2e2,#ffedd5);
@@ -373,43 +492,6 @@ header{
   font-weight:800;
   color:#7f1d1d;
 }
-.timeline-line{
-  position:relative;
-  margin-top:18px;
-  padding-left:22px;
-}
-.timeline-line:before{
-  content:"";
-  position:absolute;
-  left:7px;
-  top:5px;
-  bottom:5px;
-  width:3px;
-  background:#fecaca;
-}
-.milestone{
-  position:relative;
-  padding:11px 12px 11px 18px;
-  margin-bottom:10px;
-  border-radius:14px;
-  background:#fafaf9;
-}
-.milestone:before{
-  content:"";
-  position:absolute;
-  left:-20px;
-  top:15px;
-  width:13px;
-  height:13px;
-  border-radius:50%;
-  background:#dc2626;
-  border:3px solid white;
-}
-.milestone strong{
-  display:block;
-  color:#dc2626;
-}
-.milestone small{color:#78716c}
 .month{margin-top:20px}
 .month-title{
   font-size:19px;
@@ -822,67 +904,63 @@ header{
   <div class="days-left" id="timelineDays">--</div>
   <div class="days-text">DAYS UNTIL YOUR FIRST SPM PAPER</div>
 </div>
-<div class="card">
-  <div class="section-title">🔥 Key Exam Timeline</div>
-  <div class="timeline-line">
-    <div class="milestone">
-      <strong>26 - 29 OCT 2026</strong>
-      <span>🗣️ Ujian Bertutur BM</span>
+
+<!-- NEW STATUS SUMMARY BAR -->
+<div class="card status-summary">
+  <div style="font-weight:900;font-size:16px;">📌 Status Overview</div>
+  <div class="summary-grid">
+    <div class="summary-box">
+      <small>当前 Week</small>
+      <strong id="currentWeekName">Week 1</strong>
     </div>
-    <div class="milestone">
-      <strong>2 - 5 NOV 2026</strong>
-      <span>🗣️ Ujian Bertutur BI</span>
+    <div class="summary-box">
+      <small>下一场考试</small>
+      <strong id="nextExamName">BM Bertutur</strong>
     </div>
-    <div class="milestone">
-      <strong>16 NOV 2026</strong>
-      <span>⚡ Ujian Amali Fizik</span>
+    <div class="summary-box">
+      <small>距离下一场考试</small>
+      <strong id="nextExamDays">-- 天</strong>
     </div>
-    <div class="milestone">
-      <strong>17 NOV 2026</strong>
-      <span>🧪 Ujian Amali Kimia</span>
-    </div>
-    <div class="milestone">
-      <strong>23 NOV 2026</strong>
-      <span>📝 BM Mendengar & Bertulis (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>24 NOV 2026</strong>
-      <span>📝 BI Mendengar & Reading/Writing (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>25 NOV 2026</strong>
-      <span>📖 Pendidikan Moral (P1)</span>
-    </div>
-    <div class="milestone">
-      <strong>26 NOV 2026</strong>
-      <span>📐 Matematik (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>30 NOV 2026</strong>
-      <span>📖 Sejarah (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>03 DEC 2026</strong>
-      <span>⚡ Fizik (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>08 DEC 2026</strong>
-      <span>🇨🇳 Bahasa Cina (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>10 DEC 2026</strong>
-      <span>💻 Sains Komputer (P1)</span>
-    </div>
-    <div class="milestone">
-      <strong>15 DEC 2026</strong>
-      <span>🧪 Kimia (P1+P2)</span>
-    </div>
-    <div class="milestone">
-      <strong>17 DEC 2026</strong>
-      <span>📐 Matematik Tambahan (P1+P2)</span>
+    <div class="summary-box">
+      <small>整体进度状态</small>
+      <div id="overallStatusBadge" class="status-badge status-ontrack">🟢 ON TRACK</div>
     </div>
   </div>
 </div>
+
+<!-- PHASE BANNER -->
+<div class="card">
+  <div class="phase-banner">
+    <strong>🎯 当前核心阶段 (18/09 – 25/10)：</strong><br>
+    完成第一轮 Syllabus 学习，集中攻克 <b>Kimia + Add Math</b> 基础，同时复习稳 A 科目！
+  </div>
+  <div class="section-title">🗓 Weekly Milestones</div>
+  <div id="weeklyMilestonesList"></div>
+</div>
+
+<!-- WEEKLY CHECK-IN FORM -->
+<div class="card checkin-form">
+  <div class="section-title">📝 Weekly Check-in</div>
+  <p style="font-size:12px;color:#78716c;margin-top:-6px;margin-bottom:12px;">每周回顾一次，掌握自己的真实进度。</p>
+  
+  <label>What I should finish (本周应完成)</label>
+  <input id="checkinShould" placeholder="例：完成 Kimia Form 4 Bab 3 & Add Math 练习...">
+
+  <label>What I actually finished (实际完成)</label>
+  <input id="checkinDone" placeholder="例：完成了 Kimia Bab 3，Add Math 做了 half...">
+
+  <label>What’s falling behind? (落后的部分)</label>
+  <input id="checkinBehind" placeholder="例：Add Math 2 题高阶题没搞懂...">
+
+  <label>Why? (原因)</label>
+  <input id="checkinWhy" placeholder="例：时间安排太紧，物理花太多时间...">
+
+  <label>Next week’s adjustment (下周调整策略)</label>
+  <input id="checkinNext" placeholder="例：每天抽额外 30 分钟专项突破 Add Math...">
+
+  <button class="primary" style="width:100%;margin-top:5px;" onclick="submitCheckin()">提交 Check-in 评估状态</button>
+</div>
+
 <div class="card">
   <div class="section-title">📅 SPM 2026 Schedule Calendar</div>
   <p style="font-size:12px;color:#78716c;margin-bottom:12px">
@@ -951,6 +1029,127 @@ const SPM_SCHEDULE = {
   "2026-12-17": "AddMath P1/P2"
 };
 
+// WEEKLY MILESTONES DATA (18/09/2026 - 17/12/2026)
+const WEEKLY_DATA = [
+  {
+    week: 1,
+    range: "18/09 - 24/09",
+    startDate: "2026-09-18",
+    endDate: "2026-09-24",
+    focus: "Kimia & Add Math 基础突破",
+    target: "完成第一轮 Syllabus 重点章节（Kimia Form 4 核心概念 + Add Math 函数/ Calculus 基础）",
+    mustFinish: "Kimia 2 个章节笔记 + Add Math 15 道精选常考题"
+  },
+  {
+    week: 2,
+    range: "25/09 - 01/10",
+    startDate: "2026-09-25",
+    endDate: "2026-10-01",
+    focus: "Kimia & 稳 A 科目（BM / Sejarah）",
+    target: "巩固理科地基，开始稳 A 科目默记框架",
+    mustFinish: "Kimia 实验原理整理 + Sejarah Form 4 核心考点 2 个 Chapter"
+  },
+  {
+    week: 3,
+    range: "02/10 - 08/10",
+    startDate: "2026-10-02",
+    endDate: "2026-10-08",
+    focus: "Add Math & Fizik 专项复习",
+    target: "建立公式推导与题型归纳库",
+    mustFinish: "Add Math 突破弱项题型 + Fizik 重点计算与概念练习"
+  },
+  {
+    week: 4,
+    range: "09/10 - 15/10",
+    startDate: "2026-10-09",
+    endDate: "2026-10-15",
+    focus: "第一轮 Syllabus 尾声 & 稳 A 科目提分",
+    target: "扫清理科盲点，练习 Bahasa Melayu & English 写作范文",
+    mustFinish: "全科 Syllabus 盲点扫尾 + BM Karangan 结构准备"
+  },
+  {
+    week: 5,
+    range: "16/10 - 25/10",
+    startDate: "2026-10-16",
+    endDate: "2026-10-25",
+    focus: "BM & BI Oral 模拟演练 + 第一轮 Syllabus 完结",
+    target: "全面迎接 Ujian Bertutur，确保口语不丢分",
+    mustFinish: "BM/BI 口语朗读与会话模考 + 第一轮 Syllabus 100% 结束"
+  },
+  {
+    week: 6,
+    range: "26/10 - 01/11",
+    startDate: "2026-10-26",
+    endDate: "2026-11-01",
+    focus: "🗣️ BM Bertutur 实战周",
+    target: "自信应考 BM Oral，空余时间冲刺 BI Oral",
+    mustFinish: "完成 BM Oral 考试，准备 BI Oral 重点话题"
+  },
+  {
+    week: 7,
+    range: "02/11 - 08/11",
+    startDate: "2026-11-02",
+    endDate: "2026-11-08",
+    focus: "🗣️ BI Bertutur 实战 & Amali 备战",
+    target: "完成 BI Oral，全面转向 Fizik / Kimia 实验操作与常考问答",
+    mustFinish: "BI Oral 完结 + Amali Fizik & Kimia 实验步骤复习"
+  },
+  {
+    week: 8,
+    range: "09/11 - 15/11",
+    startDate: "2026-11-09",
+    endDate: "2026-11-15",
+    focus: "⚡ Amali 冲刺周 (Fizik & Kimia)",
+    target: "攻克 16/11 Fizik Amali 与 17/11 Kimia Amali",
+    mustFinish: "实验误差分析、变量识别、图表绘制全套练习"
+  },
+  {
+    week: 9,
+    range: "16/11 - 22/11",
+    startDate: "2026-11-16",
+    endDate: "2026-11-22",
+    focus: "📝 BM & BI 笔试终极冲刺",
+    target: "准备 23/11 BM 与 24/11 BI 笔试 + 听力",
+    mustFinish: "BM P1/P2 真题刷题 + BI Reading & Writing 题型巩固"
+  },
+  {
+    week: 10,
+    range: "23/11 - 29/11",
+    startDate: "2026-11-23",
+    endDate: "2026-11-29",
+    focus: "📝 BM, BI, Moral, Math 考试周",
+    target: "稳健应考，保持精力分配",
+    mustFinish: "完成 BM, BI, Moral, Math 笔试，复习 Sejarah"
+  },
+  {
+    week: 11,
+    range: "30/11 - 06/12",
+    startDate: "2026-11-30",
+    endDate: "2026-12-06",
+    focus: "📖 Sejarah & ⚡ Fizik 考试周",
+    target: "Sejarah 稳 A，Fizik 拿高分",
+    mustFinish: "完成 Sejarah & Fizik 笔试，复习 Bahasa Cina"
+  },
+  {
+    week: 12,
+    range: "07/12 - 13/12",
+    startDate: "2026-12-07",
+    endDate: "2026-12-13",
+    focus: "🇨🇳 BC & 💻 Sains Komputer 考试周",
+    target: "母语科稳抓，SK 理论与 SQL 语句复习",
+    mustFinish: "完成 BC & Sains Komputer 考试，备战 Kimia"
+  },
+  {
+    week: 13,
+    range: "14/12 - 17/12",
+    startDate: "2026-12-14",
+    endDate: "2026-12-17",
+    focus: "🧪 Kimia & 📐 Add Math 终极大决战",
+    target: "坚持到最后一刻，完美收官！",
+    mustFinish: "完成 15/12 Kimia 及 17/12 Add Math 考试，SPM 胜利通关！"
+  }
+];
+
 let data = {
   xp: 0,
   coins: 30,
@@ -958,7 +1157,10 @@ let data = {
     { name: "Trial paper (given by umi)", subject: "Sains Komputer", done: false }
   ],
   progress: {},
-  pet: { level: 1, fullness: 70, energy: 80, happiness: 75, exp: 0 }
+  pet: { level: 1, fullness: 70, energy: 80, happiness: 75, exp: 0 },
+  completedWeeks: {},
+  checkinStatus: "ON TRACK",
+  lastCheckin: {}
 };
 
 SUBJECTS_LIST.forEach(s => data.progress[s] = 0);
@@ -1266,12 +1468,131 @@ function updateCountdown(){
   document.getElementById("timelineDays").textContent = days;
 }
 
+// TIMELINE FEATURES IMPLEMENTATION
+function renderTimelineData(){
+  const now = new Date();
+  let currentW = 1;
+  
+  // Find Current Week
+  WEEKLY_DATA.forEach(w => {
+    const end = new Date(w.endDate + "T23:59:59");
+    const start = new Date(w.startDate + "T00:00:00");
+    if(now >= start) currentW = w.week;
+  });
+  
+  document.getElementById("currentWeekName").textContent = `Week ${currentW}`;
+
+  // Find Next Exam
+  const examDates = Object.keys(SPM_SCHEDULE).sort();
+  let nextExam = "BM Bertutur";
+  let nextExamDateStr = "2026-10-26";
+  let diffDays = "--";
+
+  for(let dStr of examDates){
+    const d = new Date(dStr + "T00:00:00");
+    if(d >= new Date(now.getFullYear(), now.getMonth(), now.getDate())){
+      nextExam = SPM_SCHEDULE[dStr];
+      nextExamDateStr = dStr;
+      const diffTime = d - now;
+      diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+      break;
+    }
+  }
+
+  document.getElementById("nextExamName").textContent = nextExam;
+  document.getElementById("nextExamDays").textContent = `${diffDays} 天`;
+
+  // Render Status Badge
+  const badge = document.getElementById("overallStatusBadge");
+  const st = data.checkinStatus || "ON TRACK";
+  badge.textContent = (st === "ON TRACK" ? "🟢 " : st === "CATCHING UP" ? "🟡 " : "🔴 ") + st;
+  badge.className = "status-badge " + (st === "ON TRACK" ? "status-ontrack" : st === "CATCHING UP" ? "status-catchingup" : "status-fallingbehind");
+
+  // Render Weekly Cards
+  const container = document.getElementById("weeklyMilestonesList");
+  if(!container) return;
+  container.innerHTML = "";
+
+  WEEKLY_DATA.forEach(w => {
+    const isCurrent = (w.week === currentW);
+    const isPast = new Date(w.endDate + "T23:59:59") < now;
+    const isDone = !!data.completedWeeks[w.week];
+    const isPastDue = isPast && !isDone;
+
+    const div = document.createElement("div");
+    div.className = `weekly-card ${isCurrent ? 'current-week' : ''}`;
+    div.innerHTML = `
+      <div class="weekly-head">
+        <div class="week-title">Week ${w.week} (${w.range})</div>
+        <div class="week-tag">${isCurrent ? '🔥 本周' : isPast ? '已过去' : '未来计划'}</div>
+      </div>
+      <div class="week-detail">
+        <strong>📚 重点科目：</strong> ${escapeHTML(w.focus)}
+        <span><strong>🎯 本周目标：</strong> ${escapeHTML(w.target)}</span>
+        <span><strong>✅ 必须完成：</strong> ${escapeHTML(w.mustFinish)}</span>
+      </div>
+      <div style="margin-top:10px;display:flex;justify-space-between;align-items:center;">
+        <label style="font-size:12px;font-weight:700;cursor:pointer;">
+          <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleWeekComplete(${w.week})"> 标记本周里程碑已完成
+        </label>
+        ${isPastDue ? '<span class="past-due-badge">⚠️ Past Due / Falling Behind</span>' : ''}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  // Prefill Check-in form if existing
+  if(data.lastCheckin){
+    if(data.lastCheckin.should) document.getElementById("checkinShould").value = data.lastCheckin.should;
+    if(data.lastCheckin.done) document.getElementById("checkinDone").value = data.lastCheckin.done;
+    if(data.lastCheckin.behind) document.getElementById("checkinBehind").value = data.lastCheckin.behind;
+    if(data.lastCheckin.why) document.getElementById("checkinWhy").value = data.lastCheckin.why;
+    if(data.lastCheckin.next) document.getElementById("checkinNext").value = data.lastCheckin.next;
+  }
+}
+
+function toggleWeekComplete(weekNum){
+  data.completedWeeks[weekNum] = !data.completedWeeks[weekNum];
+  if(data.completedWeeks[weekNum]){
+    data.xp += 50;
+    data.coins += 15;
+    toast("🎉 Week Milestone Completed! +50 XP");
+  }
+  save();
+  updateAll();
+}
+
+function submitCheckin(){
+  const should = document.getElementById("checkinShould").value.trim();
+  const done = document.getElementById("checkinDone").value.trim();
+  const behind = document.getElementById("checkinBehind").value.trim();
+  const why = document.getElementById("checkinWhy").value.trim();
+  const next = document.getElementById("checkinNext").value.trim();
+
+  data.lastCheckin = { should, done, behind, why, next };
+
+  if(behind && behind.length > 2){
+    if(done && done.length > 2){
+      data.checkinStatus = "CATCHING UP";
+    } else {
+      data.checkinStatus = "FALLING BEHIND";
+    }
+  } else {
+    data.checkinStatus = "ON TRACK";
+  }
+
+  save();
+  updateAll();
+  toast("✅ Weekly Check-in saved!");
+}
+
 function updateAll(){
   updateStats();
   renderTasks();
   renderPet();
   renderProgress();
   updateCountdown();
+  renderTimelineData();
 }
 
 function showPage(page,button){
@@ -1279,7 +1600,10 @@ function showPage(page,button){
   document.getElementById(page).classList.add("active");
   document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
   button.classList.add("active");
-  if(page==="timeline") renderCalendar();
+  if(page==="timeline") {
+    renderTimelineData();
+    renderCalendar();
+  }
 }
 
 function renderCalendar(){

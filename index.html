@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="light-content">
 <meta name="apple-mobile-web-app-title" content="SPM Quest">
@@ -64,6 +65,7 @@ header{
   font-size:42px;
   font-weight:900;
   margin:5px 0;
+  color:#f97316;
 }
 .count-label{color:#78716c;font-size:13px}
 .warning{
@@ -121,7 +123,6 @@ header{
   text-decoration:line-through;
   opacity:.45;
 }
-/* TIMER */
 .timer{text-align:center}
 .timer-display{
   font-size:58px;
@@ -157,7 +158,6 @@ header{
   color:white;
   font-weight:900;
 }
-/* SUBJECT PROGRESS */
 .subject-progress-card{
   border:2px solid #fed7aa;
 }
@@ -181,7 +181,6 @@ header{
   border-radius:20px;
   transition:width .4s;
 }
-/* PET */
 .pet-card{overflow:hidden}
 .pet-stage{
   position:relative;
@@ -318,7 +317,6 @@ header{
   font-weight:800;
 }
 .pet-actions button:active{transform:scale(.96)}
-/* SHOP */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -340,7 +338,6 @@ header{
   font-weight:800;
   font-size:12px;
 }
-/* TIMELINE */
 .timeline-hero{
   text-align:center;
   background:linear-gradient(135deg,#fee2e2,#ffedd5);
@@ -457,7 +454,6 @@ header{
   text-overflow:ellipsis;
   max-width:100%;
 }
-/* NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -490,7 +486,6 @@ header{
 .nav-btn.active{color:#f97316}
 .page{display:none}
 .page.active{display:block}
-/* TOAST */
 .toast{
   position:fixed;
   left:50%;
@@ -511,7 +506,6 @@ header{
   opacity:1;
   transform:translateX(-50%) translateY(0);
 }
-/* LOCK */
 #lockScreen{
   position:fixed;
   inset:0;
@@ -671,7 +665,7 @@ header{
   </div>
 </div>
 
-<!-- SUBJECT PROGRESS (RESTORED ON HOME) -->
+<!-- SUBJECT PROGRESS (HOME) -->
 <div class="card subject-progress-card">
   <div class="section-title">📊 Subject Progress</div>
   <div id="homeProgressList"></div>
@@ -879,9 +873,20 @@ header{
 
 <script>
 const PASSWORD="Yuxuan521";
-const FIRST_SPM_DATE=new Date("2026-10-26T00:00:00+08:00");
+const STORAGE_KEY = "spmQuestData_v3";
 
-// SPM 2026 Timetable mapping for your 9 subjects
+const SUBJECTS_LIST = [
+  "Bahasa Melayu",
+  "English",
+  "Mathematics",
+  "Sejarah",
+  "Moral",
+  "Add Math",
+  "Fizik",
+  "Kimia",
+  "Sains Komputer"
+];
+
 const SPM_SCHEDULE = {
   "2026-10-26": "BM Oral",
   "2026-10-27": "BM Oral",
@@ -904,41 +909,27 @@ const SPM_SCHEDULE = {
   "2026-12-07": "Kimia P1/P2"
 };
 
-const SUBJECTS_LIST = [
-  "Bahasa Melayu",
-  "English",
-  "Mathematics",
-  "Sejarah",
-  "Moral",
-  "Add Math",
-  "Fizik",
-  "Kimia",
-  "Sains Komputer"
-];
+let data = {
+  xp: 0,
+  coins: 30,
+  tasks: [
+    { name: "Trial paper (given by umi)", subject: "Sains Komputer", done: false }
+  ],
+  progress: {},
+  pet: { level: 1, fullness: 70, energy: 80, happiness: 75, exp: 0 }
+};
 
-let data = JSON.parse(localStorage.getItem("spmQuestData") || "null");
+SUBJECTS_LIST.forEach(s => data.progress[s] = 0);
 
-// Initialize structure if missing or migrated
-if (!data || !data.progress) {
-  data = {
-    xp: 0,
-    coins: 30,
-    tasks: [
-      { name: "Revise Kimia basics", subject: "Kimia", done: false },
-      { name: "Practise Add Math", subject: "Add Math", done: false },
-      { name: "Review Sejarah", subject: "Sejarah", done: false }
-    ],
-    progress: {},
-    pet: { level: 1, fullness: 70, energy: 80, happiness: 75, exp: 0 }
-  };
-}
-
-// Ensure all 9 subjects exist in data.progress
-SUBJECTS_LIST.forEach(subj => {
-  if (data.progress[subj] === undefined) {
-    data.progress[subj] = 0;
+try {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    if (parsed && typeof parsed === "object") {
+      data = Object.assign(data, parsed);
+    }
   }
-});
+} catch(e) {}
 
 let timerMinutes=25;
 let timerSeconds=0;
@@ -946,16 +937,17 @@ let timerRunning=false;
 let timerInterval=null;
 
 function save(){
-  localStorage.setItem("spmQuestData",JSON.stringify(data));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch(e) {}
 }
 
 function toast(message){
   const el=document.getElementById("toast");
+  if(!el) return;
   el.textContent=message;
   el.classList.add("show");
-  setTimeout(()=>{
-    el.classList.remove("show");
-  },1800);
+  setTimeout(()=>{ el.classList.remove("show"); }, 1800);
 }
 
 function updateStats(){
@@ -965,18 +957,15 @@ function updateStats(){
 
 function escapeHTML(str){
   return String(str).replace(/[&<>"']/g,m=>({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
   }[m]));
 }
 
 function renderTasks(){
   const list=document.getElementById("taskList");
+  if(!list) return;
   list.innerHTML="";
-  if(data.tasks.length===0){
+  if(!data.tasks || data.tasks.length===0){
     list.innerHTML='<p style="color:#a8a29e;font-size:13px">No quests yet. Add one above.</p>';
     return;
   }
@@ -1042,8 +1031,11 @@ function renderProgress(){
       </div>
     `;
   }).join("");
-  document.getElementById("progressList").innerHTML=html;
-  document.getElementById("homeProgressList").innerHTML=html;
+  
+  const el1 = document.getElementById("progressList");
+  const el2 = document.getElementById("homeProgressList");
+  if(el1) el1.innerHTML=html;
+  if(el2) el2.innerHTML=html;
 }
 
 function setTimer(minutes){
@@ -1188,6 +1180,7 @@ function buyItem(type,cost){
 
 function animatePet(type){
   const pet=document.getElementById("pet");
+  if(!pet) return;
   pet.classList.remove("playing","feeding","sleeping");
   void pet.offsetWidth;
   pet.classList.add(type);
@@ -1217,9 +1210,10 @@ function renderPet(){
 }
 
 function updateCountdown(){
+  const targetDate = new Date(2026, 9, 26, 0, 0, 0); // Month 9 is October
   const now = new Date();
-  const diff = FIRST_SPM_DATE - now;
-  const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+  const diffTime = targetDate - now;
+  const days = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
   document.getElementById("homeCountdown").textContent = days;
   document.getElementById("timelineDays").textContent = days;
 }
@@ -1242,6 +1236,7 @@ function showPage(page,button){
 
 function renderCalendar(){
   const container=document.getElementById("calendarContainer");
+  if(!container) return;
   container.innerHTML="";
   
   const months=[
@@ -1293,12 +1288,10 @@ function renderCalendar(){
       numSpan.textContent=day;
       el.appendChild(numSpan);
       
-      // Check today
       if(now.getFullYear()===m.year && now.getMonth()===m.month && now.getDate()===day){
         el.classList.add("today");
       }
       
-      // Check Exam Date
       const dateKey=`${m.year}-${String(m.month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
       if(SPM_SCHEDULE[dateKey]){
         el.classList.add("exam");
@@ -1318,7 +1311,6 @@ function renderCalendar(){
   });
 }
 
-/* PASSWORD */
 function unlock(){
   const input=document.getElementById("passwordInput");
   const error=document.getElementById("lockError");
@@ -1346,7 +1338,6 @@ if(sessionStorage.getItem("spmUnlocked")==="true"){
 updateAll();
 renderCalendar();
 updateTimerDisplay();
-setInterval(updateCountdown,60000);
 </script>
 </body>
 </html>
